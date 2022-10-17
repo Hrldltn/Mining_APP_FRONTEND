@@ -7,6 +7,7 @@ import clienteAxios from '../config/axios'
 const Registrar = () => {
   const[correo,setCorreo]=useState('')
   const[contraseña,setcontraseña]=useState('')
+  const[telefono,setTelefono]=useState('')
   const[repetirContraseña,setRepetirContraseña]=useState('')
   const[area,setArea]=useState('')
   const[alerta , setAlerta]=useState({})
@@ -17,7 +18,7 @@ const Registrar = () => {
     
     e.preventDefault()
     
-    if([correo,contraseña,repetirContraseña,area].includes('')){
+    if([correo,contraseña,repetirContraseña,area,telefono].includes('')){
       setAlerta({msg:'¡Los campos no pueden estar vacios!', error:true})
       return;
     }
@@ -32,16 +33,15 @@ const Registrar = () => {
       return;
     }
     
-    if(correo.split('@')[1] !== "rtCodelco.cl"){
-      setAlerta({msg:'¡ Correo no valido porfavor ingrese el correo de la empresa !',error:true})
-      return;
-    }
+    // if(correo.split('@')[1] !== "rtCodelco.cl"){
+    //   setAlerta({msg:'¡ Correo no valido porfavor ingrese el correo de la empresa !',error:true})
+    //   return;
+    // }
     
     let user=correo.split('@')[0]
     let nombre = user.split('.')[0]
     let apellido = user.split('.')[1]
-    console.log(nombre)
-    console.log(apellido)
+
     if(nombre === undefined || apellido === undefined){
       setAlerta({msg:'¡El correo debe contener un nombre y un apellido separados por un "." !', error:true})
       return;
@@ -67,6 +67,7 @@ const Registrar = () => {
 
   var sectionStyle={
     width: '100%',
+    heigth:'100%',
     backgroundImage:`url(${ImagenRegistro})`,
     alt:"Registrar"
   }
@@ -78,7 +79,7 @@ const Registrar = () => {
         <div className="bg-bottom bg-no-repeat bg-cover row-span-3 h-80 md:h-screen" style={sectionStyle}>
           <h1 className="text-center font-bold text-white text-2xl md:text-4xl pt-36 md:pt-96 md:mr-16">GLOBAL{" "}<span className="text-orange-500">COPPER</span> MINING</h1> 
         </div>
-        <div className="2xl:px-5 xl:m-10 shadow-2xl bg-white md:px-2 md:py-5 rounded-xl md:mt-5 xl:mt-10 md:ml-3 xl:ml-10">
+        <div className="2xl:px-5 xl:m-10 shadow-2xl bg-white md:px-2 md:py-5 rounded-xl md:mt-5  md:ml-3 xl:ml-10">
           <div >
             <h1 className="text-amber-500 font-black text-3xl md:text-4xl text-center pt-10 mb-6">¡Registra tu Contraseña!</h1>
           </div>
@@ -91,7 +92,7 @@ const Registrar = () => {
                     </label>
                     <input type="email" autoComplete="username" placeholder="Registra tu correo ej: Jose@rtCodelco.cl" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={correo} onChange={e => setCorreo(e.target.value)}></input>
                 </div>
-                <div className="px-4 md:px-20 mt-10">
+                <div className="px-4 md:px-20 mt-7">
                     <label className="uppercase text-gray-600 block md:text-xl font-bold">
                       Área:
                     </label>
@@ -105,19 +106,25 @@ const Registrar = () => {
                         <option value="GSSO">GSSO</option>
                     </select>
                 </div>
-                <div className="px-4 md:px-20 mt-10">
+                <div className="px-4 md:px-20 mt-7">
+                    <label className="uppercase text-gray-600 block md:text-xl font-bold">
+                      Telefono:
+                    </label>
+                    <input type="number" placeholder="Registra tu Telefono" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={telefono} onChange={e => setTelefono(e.target.value)}></input>
+                </div>
+                <div className="px-4 md:px-20 mt-7">
                     <label className="uppercase text-gray-600 block md:text-xl font-bold">
                       Contraseña:
                     </label>
                     <input type="password" autoComplete="new-password" placeholder="Registra tu Contraseña" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={contraseña} onChange={e => setcontraseña(e.target.value)}></input>
                 </div>
-                <div className="px-4 md:px-20 mt-10">
+                <div className="px-4 md:px-20 mt-7">
                     <label className="uppercase text-gray-600 block md:text-xl font-bold">
                       Repite tu contraseña:
                     </label>
                     <input type="password" autoComplete="new-password" placeholder="Repite tu contraseña" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={repetirContraseña} onChange={e => setRepetirContraseña(e.target.value)}></input>
                 </div>
-                <div className="px-4 md:px-20 mt-10">
+                <div className="px-4 md:px-20 mt-7">
                     <input type="submit" value="Registrar"  className="bg-gradient-to-r from-amber-600 to-amber-700 shadow-lg shadow-amber-600/50  rounded-xl w-full p-2 mt-3 font-bold text-xl md:text-2xl text-white hover:cursor-pointer  hover:shadow-amber-400 hover:text-amber-800 duration-300"></input>
                 </div>
             </form>

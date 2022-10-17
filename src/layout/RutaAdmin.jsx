@@ -6,7 +6,7 @@ import {HiMenuAlt3} from 'react-icons/hi'
 import {GiCog,GiEarthCrack,GiMiningHelmet,GiEarthAmerica,GiMining,GiSpanner,GiNotebook,GiCancel} from 'react-icons/Gi'
 
 import Header from '../components/Header'
-import Footer from '../components/footer'
+import Footer from '../components/Footer'
 import useAuth from '../hooks/useAuth'
 
 const RutaAdmin = () => {
@@ -16,11 +16,11 @@ const RutaAdmin = () => {
 
   const menus = [ 
     {name:"Perforacion y tronadura",link:'Perforacion',icon: GiEarthCrack},
-    {name:"Operaciones mina",link:'/',icon: GiMiningHelmet},
-    {name:"Geologia",link:'/',icon: GiEarthAmerica},
-    {name:"Geotecnia",link:'Geotecnia',icon: GiMining,margin:true},
-    {name:"Mantenimiento",link:'/',icon: GiSpanner},
-    {name:"GSSO",link:'/',icon: GiNotebook},
+    {name:"Operaciones mina",link:'Perforacion',icon: GiMiningHelmet},
+    {name:"Geologia",link:'Perforacion',icon: GiEarthAmerica},
+    {name:"Geotecnia",link:'Perforacion',icon: GiMining,margin:true},
+    {name:"Mantenimiento",link:'Perforacion',icon: GiSpanner},
+    {name:"GSSO",link:'Perforacion',icon: GiNotebook},
     {name:"Configuración",link:'Perfil',icon: GiCog,margin:true},
   ]
   if(cargando) return 'cargando...'

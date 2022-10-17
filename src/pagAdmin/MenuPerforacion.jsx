@@ -29,7 +29,7 @@ const AdminPerforacion = () => {
     <section>
       <div className="container">
           <nav className="flex flex-col items-center 2xl:flex-row align-center">
-            <Link to="PerforadoraForm">
+            <Link to="Formulario">
               <div className="h-96 w-72 md:w-96 p-1 my-4 md:p-0 md:ml-0 cursor-pointer mr-5 transition duration-300 ease-in-out hover:scale-105 hover:drop-shadow-2xl">
                 <div className="bg-right bg-no-repeat bg-cover w-full h-full rounded-3xl" style={CondicionIMG}>
                   <div className=" w-50 h-full md:w-96 md:h-96 bg-gray-900 bg-opacity-60 rounded-3xl">

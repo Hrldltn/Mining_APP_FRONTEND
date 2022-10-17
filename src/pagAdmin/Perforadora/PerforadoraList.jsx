@@ -1,21 +1,26 @@
 import {useEffect} from 'react'
 import useCondicion from '../../hooks/useCondicion'
-import Condicion from '../../components/Condicion'
+import Condicion from '../../components/CondicionPerforadora'
+
 
 const CondicionList = () => {
-  const { condicion } = useCondicion()
-  console.log(condicion)
+  const { condiciones } = useCondicion()
+ 
   return (
     <>  
-      {condicion.length ? (
+      {condiciones.length ? (
         <> 
-          <h2 className="font-black text-2xl text-center">Información de Perforadora</h2>
-          {condicion.map(condicion =>(
-            <Condicion
-              key={condicion._id}
-              condicion={condicion}
-            ></Condicion>
-          ))}
+          <h2 className="font-black text-3xl text-center mt-10">Información de Perforadora</h2>
+          <p className="text-xl mt-5 mb-10 text-center">Condiciones e información de las{''} <span className="text-amber-600 font-bold">Perforadoras</span> </p>
+          <div className="overflow-y-scroll h-96">
+              {condiciones.map(condicion =>(
+                <Condicion
+                  key={condicion._id}
+                  condicion={condicion}
+                ></Condicion>
+              ))}
+          </div>
+          
         
         </>
       ) : 

@@ -9,6 +9,9 @@ import OlvidePassword from './pagPublicas/OlvidePassword'
 import NuevoPassword from './pagPublicas/NuevoPassword'
 
 import Bienvenida from './pagAdmin/Bienvenida'
+import CambiarPassword from './pagAdmin/CambiarPassword'
+import EditarPerfil from './pagAdmin/EditarPerfil'
+
 import MenuPerforacion from './pagAdmin/MenuPerforacion'
 import PerforadoraForm from './pagAdmin/Perforadora/PerforadoraForm'
 import CondicionList from './pagAdmin/Perforadora/PerforadoraList'
@@ -23,7 +26,7 @@ function App() {
         <AuthProvider>
           <CondicionProvider>
               <Routes>
-                  {/* publico */}
+                  {/* PUBLICAS */}
                   <Route path="/" element={<AuthLayout/>}> 
                       <Route index element={<Login/>} />
                       <Route path="registrar" element={<Registrar/>} />
@@ -31,14 +34,31 @@ function App() {
                       <Route path="recuperar-password/:token" element={<NuevoPassword/>} />
                       <Route path="confirmar/:token" element={<ConfirmarCuenta/>} />
                   </Route>
-                    {/* privadas */}
+
+                    {/* PRIVADAS */}
                   <Route path="/admin" element={<RutaProtegida/>}>
                       <Route index element={<Bienvenida/>}/>
+
+                      {/* PERFIL*/}
+                      <Route path="Perfil" element={<EditarPerfil/>}/>
+                      <Route path="Modificar-Password" element={<CambiarPassword/>}/>
+
+                      {/* PERFORADORA Y TRONADURA */}
+                      <Route path="Perforacion" element={<MenuPerforacion/>}/>
+                      <Route path="Perforacion/Formulario" element={<PerforadoraForm/>}/>
+                      <Route path="Perforacion/Formulario/Condicion" element={<CondicionList/>}/>
+                      {/* TRONADURA */}
                       <Route path="Perforacion" element={<MenuPerforacion/>}/>
                       <Route path="Perforacion/PerforadoraForm" element={<PerforadoraForm/>}/>
                       <Route path="Perforacion/PerforadoraForm/Perforadora" element={<CondicionList/>}/>
-       
-                    
+                      {/* TRASLADO */}
+                      <Route path="Perforacion" element={<MenuPerforacion/>}/>
+                      <Route path="Perforacion/PerforadoraForm" element={<PerforadoraForm/>}/>
+                      <Route path="Perforacion/PerforadoraForm/Perforadora" element={<CondicionList/>}/>
+                      {/* SONDAJE */}
+                      <Route path="Perforacion" element={<MenuPerforacion/>}/>
+                      <Route path="Perforacion/PerforadoraForm" element={<PerforadoraForm/>}/>
+                      <Route path="Perforacion/PerforadoraForm/Perforadora" element={<CondicionList/>}/>
                 </Route>
               </Routes>
           </CondicionProvider>
