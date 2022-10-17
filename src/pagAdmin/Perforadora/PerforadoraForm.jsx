@@ -20,7 +20,8 @@ const CondicionPer = () => {
  
   const[alerta , setAlerta]=useState({})
 
-  const user = nombre + ' ' + apellido
+  let user = nombre + ' ' + apellido
+
 
   const {guardarCondicion,condiciones} = useCondicion()
 
