@@ -1,7 +1,7 @@
 import {useState , useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import useCondicion from "../hooks/useCondicion"
-import ImagenPerforadora from '../assets/img/Perforadora.png'
+import ImagenPerforadora from '../assets/img/perforadora.png'
 import CerrarBtn from '../assets/img/cerrar.svg'
 
 const Modal = ({setModal,animarModal,setAnimarModal}) => {
