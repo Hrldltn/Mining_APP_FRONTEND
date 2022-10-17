@@ -31,10 +31,10 @@ const Login = () => {
       return;
     }
 
-    if(correo.split('@')[1] !== "rtCodelco.cl"){
-      setAlerta({msg:'¡ Correo no valido porfavor ingrese el correo de la empresa !',error:true})
-      return;
-    }
+    // if(correo.split('@')[1] !== "rtCodelco.cl"){
+    //   setAlerta({msg:'¡ Correo no valido porfavor ingrese el correo de la empresa !',error:true})
+    //   return;
+    // }
 
     try {
       const { data } = await clienteAxios.post('usuario/login',{correo,contraseña})
