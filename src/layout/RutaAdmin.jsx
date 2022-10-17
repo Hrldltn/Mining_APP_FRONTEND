@@ -6,7 +6,7 @@ import {HiMenuAlt3} from 'react-icons/hi'
 import {GiCog,GiEarthCrack,GiMiningHelmet,GiEarthAmerica,GiMining,GiSpanner,GiNotebook,GiCancel} from 'react-icons/gi'
 
 import Header from '../components/Header'
-import Footer from './components/Footer'
+import Footer from '../../src/components/Footer'
 import useAuth from '../hooks/useAuth'
 
 const RutaAdmin = () => {
