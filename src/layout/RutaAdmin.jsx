@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {Outlet , Navigate , Link} from 'react-router-dom'
 
 import {HiMenuAlt3} from 'react-icons/hi'
-import {GiCog,GiEarthCrack,GiMiningHelmet,GiEarthAmerica,GiMining,GiSpanner,GiNotebook,GiCancel} from 'react-icons/Gi'
+import {GiCog,GiEarthCrack,GiMiningHelmet,GiEarthAmerica,GiMining,GiSpanner,GiNotebook,GiCancel} from '/react-icons/Gi'
 
 import Header from '../components/Header'
 import Footer from '../components/footer'
