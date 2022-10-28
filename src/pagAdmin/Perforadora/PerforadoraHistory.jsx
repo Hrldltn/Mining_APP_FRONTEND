@@ -34,12 +34,12 @@ const PerforadoraHistory = () => {
                     <input value={search} onChange={e => setSearch(e.target.value)} type="text" className="md:w-[40rem] xl:w-[40rem] 2xl:w-[40rem] w-[19rem] rounded-md p-2 pl-2 xl:ml-2 text-lg md:text-xl" placeholder="Busca por Nombre, cantidad, etc.."></input>
                     <HiOutlineSearch size="30" className="mt-1 -translate-x-12 md:-translate-x-20 xl:-translate-x-42  2xl:-translate-x-[6rem] ml-6 text-gray-400"></HiOutlineSearch>
                 </div>
-                <div className=" flex xl:container justify-center mt-5 rounded-md drop-shadow-2xl md:-translate-x-2 xl:translate-x-1">
+                <div className=" flex xl:container justify-center mt-5 rounded-md drop-shadow-2xl md:-translate-x-2 xl:translate-x-3">
                     <div className="overflow-x-auto relative rounded-xl  drop-shadow-xl w-full h-full hidden md:block">
                         <table className="w-full md:text-md xl:text-lg text-sm text-left h-max text-gray-500 dark:text-gray-400">
                             <thead className="text-md text-gray-700 uppercase bg-gray-300 dark:bg-gray-800 dark:text-gray-100">
                                 <tr >
-                                   <th scope="col" className="py-3 px-4">
+                                   <th scope="col" className="py-3 px-4 2xl:px-px-6">
                                         Nombre
                                     </th>
                                     <th scope="col" className="py-3 px-10 2xl:px-13">
@@ -64,23 +64,23 @@ const PerforadoraHistory = () => {
                             <tbody>
                                 {results.map(condicion =>(
                                 <tr  key={condicion._id}  className="bg-white border-b dark:bg-gray-700 dark:border-gray-500">
-                                    <td className="py-4 md:px-2 2xl: text-gray-100">
+                                    <td className="py-4 md:px-2 2xl:pl-5  text-gray-100">
                                         {condicion.Nombre}
                                     </td>
                             
                                     <td className="py-4 2xl: text-gray-100">
                                         {condicion.modelo}      
                                     </td>
-                                    <td className="py-4 md:px-8 2xl: text-gray-100">
+                                    <td className="py-4 md:px-8 2xl:px-5 text-gray-100">
                                         {condicion.cantidad}
                                     </td>
-                                    <td className="py-4 md:px-2 2xl: text-gray-100">
+                                    <td className="py-4 md:px-2 2xl:px-0 text-gray-100">
                                         {condicion.estado}
                                     </td>
-                                    <td className="py-4 text-gray-100 px-2 2xl:">
+                                    <td className="py-4 text-gray-100 px-2 2xl:px-0">
                                         {condicion.fecha}
                                     </td>
-                                    <td className="py-4 md:px-6 2xl: text-gray-100">
+                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
                                         {condicion.user}
                                     </td>
                                 </tr>
