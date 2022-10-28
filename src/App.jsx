@@ -12,7 +12,7 @@ import Bienvenida from './pagAdmin/Bienvenida'
 import CambiarPassword from './pagAdmin/CambiarPassword'
 import EditarPerfil from './pagAdmin/EditarPerfil'
 
-import MenuPerforacion from './pagAdmin/MenuPerforacion'
+import MenuPerforacion from './pagAdmin/Perforadora/MenuPerforacion'
 import PerforadoraForm from './pagAdmin/Perforadora/PerforadoraForm'
 import CondicionList from './pagAdmin/Perforadora/PerforadoraList'
 import PerforadoraHistory from './pagAdmin/Perforadora/PerforadoraHistory'

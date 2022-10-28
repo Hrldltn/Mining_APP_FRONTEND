@@ -61,7 +61,6 @@ const CondicionPer = () => {
     guardarCondicion({cantidad,Nombre,estado,modelo,id,user})
     
     setCantidad('')
-    setGalla('')
     setEstado('')
     setModelo('')
     setNombre('')
@@ -72,7 +71,7 @@ const CondicionPer = () => {
       setTimeout(() => {
         setAlerta({})
         return window.location.href = "Formulario/Condicion";
-      },1500)
+      },1300)
     }
 
     setTimeout(() => {
@@ -126,15 +125,7 @@ const CondicionPer = () => {
                     <option value="Mal Estado">Mal Estado</option>
                 </select>
             </div>
-            <div className="px-4 md:px-20 mt-10">
-                <label className="uppercase text-gray-600 block md:text-xl text-lg font-bold">
-                  Galla:
-                </label>
-                <div className="flex justify-around">
-                  <label className="uppercase text-gray-600 block md:text-xl text-lg font-bold" ><input type="radio" name="Galla" className="mr-2 md:text-xl text-lg" value='Si' onChange={e => setGalla(e.target.value)}></input>Si</label>
-                  <label className="uppercase text-gray-600 block md:text-xl text-lg font-bold" ><input type="radio" name="Galla" className="mr-2 md:text-xl text-lg" value='No' onChange={e => setGalla(e.target.value)}></input>No</label>
-                </div>
-            </div>
+        
             <div className="px-4 md:px-20 mt-5 py-5 flex flex-col items-center">
               <input type="submit" value={id ? 'Guardar Cambios': 'Registrar Condiciones'}  className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50  rounded-xl w-full p-2 mt-3 font-bold md:text-2xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-100 duration-300"></input>
             </div>

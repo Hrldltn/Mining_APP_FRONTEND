@@ -1,10 +1,10 @@
 
 import {Link } from 'react-router-dom'
 import {HiChevronDown,HiPencil ,HiOutlineClipboardList,HiOutlineBookOpen} from 'react-icons/hi'
-import Condicion from '../assets/img/Condicion.jpg'
-import Tronadura from '../assets/img/TronaPro.jpg'
-import Traslado from '../assets/img/Traslado.jpg'
-import Sondaje from '../assets/img/sondaje.jpg'
+import Condicion from '../../assets/img/Condicion.jpg'
+import Tronadura from '../../assets/img/TronaPro.jpg'
+import Traslado from '../../assets/img/Traslado.jpg'
+import Sondaje from '../../assets/img/sondaje.jpg'
 
 const AdminPerforacion = () => {
   const CondicionIMG={
