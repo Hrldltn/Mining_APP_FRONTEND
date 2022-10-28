@@ -3,7 +3,8 @@ import{ Link }from 'react-router-dom'
 import ImagenRegistro from '../assets/img/Registro.jpg'
 import Alerta from '../components/Alerta'
 import clienteAxios from '../config/axios'
-import Footer from '../components/Footer'
+
+
 const Registrar = () => {
   const[correo,setCorreo]=useState('')
   const[contraseña,setcontraseña]=useState('')
