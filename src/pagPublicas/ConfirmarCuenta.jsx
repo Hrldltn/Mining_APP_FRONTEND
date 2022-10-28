@@ -3,7 +3,7 @@ import ImagenConfirmar from '../assets/img/Confirmar.jpg'
 import {Link , useParams} from 'react-router-dom'
 import clienteAxios from '../config/axios'
 import Alerta from '../components/Alerta'
-
+import Footer from '../components/Footer'
 const ConfirmarCuenta = () => {
   const [cuentaConfirmada, setCuentaConfirmada]=useState(false)
   const [cargando, setCargando]=useState(true)
@@ -44,10 +44,7 @@ const ConfirmarCuenta = () => {
       <div className="2xl:px-5 xl:m-10 shadow-2xl bg-white md:px-2 md:py-5 rounded-xl md:mt-10 xl:mt-20 xl:mx-10">
           {!cargando && <Alerta alerta={alerta}/>}
           {cuentaConfirmada &&<Link to="/" className="block text-center  text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg">¡Inicia Sesión!</Link>}
-          <nav className="mt-10 lg:flex lg:justify-around">
 
-          </nav>
-          <div className="text-center">Logo</div>
       </div>
     </>
   )

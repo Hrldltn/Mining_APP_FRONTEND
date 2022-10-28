@@ -21,14 +21,14 @@ const OlvidePassword = () => {
     e.preventDefault()
 
     if([correo].includes('')){
-      setAlerta({msg:'¡ El campo correo no debe estar vacio !',error:true})
+      setAlerta({msg:' El campo correo no debe estar vacio ',error:true})
       return;
     }
 
-    if(correo.split('@')[1] !== "rtCodelco.cl"){
-      setAlerta({msg:'¡ Correo no valido porfavor ingrese el correo de la empresa !',error:true})
-      return;
-    }
+    // if(correo.split('@')[1] !== "rtCodelco.cl"){
+    //   setAlerta({msg:' Correo no valido porfavor ingrese el correo de la empresa ',error:true})
+    //   return;
+    // }
     try {
         const { data } = await clienteAxios.post('usuario/recuperar-password',{correo})
         setAlerta({msg:data.msg})
@@ -74,7 +74,6 @@ const OlvidePassword = () => {
               <Link to="/" className="block text-center  text-gray-600 hover:underline hover:cursor-pointer mt-8 text-sm md:text-lg">¿Ya tienes cuenta? ¡Inicia Sesión!</Link>
               <Link to="/Registrar" className="block text-center pb-6 mt-8 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg ">¿No has registrado tu contraseña aún? ¡Regístrate aquí!</Link>
           </nav>
-          <div className="text-center mt-10">Logo</div>
       </div>
     </>
   )

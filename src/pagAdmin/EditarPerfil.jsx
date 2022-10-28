@@ -21,7 +21,7 @@ const EditarPerfil = () => {
     const {nombre , apellido , correo , telefono, area } = perfil
 
     if (telefono == null ){
-      setAlerta({msg:'¡Debes ingresar un Telefono!', error:true})
+      setAlerta({msg:'Debes ingresar un Telefono', error:true})
       return;
     }
 

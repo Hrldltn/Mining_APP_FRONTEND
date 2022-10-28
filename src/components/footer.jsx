@@ -1,10 +1,19 @@
+import logo from '../assets/img/logo.png'
 
 const footer = () => {
+
+  var sectionStyle={
+    width: '53%',
+    heigth:'100%',
+    backgroundImage:`url(${logo})`,
+    alt:"Registrar"
+  }
   return (
-      <footer className="py-5 md:py-10">
-          <p className="text-center font-bold ">G.{''} <span className="text-amber-600">C.</span>M.</p>
-          <div className="text-center mt-5">Logo</div>
-          
+    
+      <footer>
+          <div className=" w-full mr-20 md:mr-0">
+            <div className="md:translate-x-36 xl:translate-x-96  2xl:translate-x-[44rem] h-52 bg-no-repeat hidden md:block" style={sectionStyle}></div>  
+          </div>     
       </footer>
     )
 }

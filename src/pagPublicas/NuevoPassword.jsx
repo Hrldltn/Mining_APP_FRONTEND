@@ -21,7 +21,7 @@ const NuevoPassword = () => {
         await clienteAxios(`usuario/recuperar-password/${token}`)
         setTokenValido(true)
       } catch (error) {
-        setAlerta({msg:'¡ Hubo un error con el enlace !',error:true})
+        setAlerta({msg:'Hubo un error con el enlace ',error:true})
       }
     }
     comprobarToken()
@@ -31,17 +31,17 @@ const NuevoPassword = () => {
     e.preventDefault()
 
     if([contraseña , repetirContraseña].includes('')){
-      setAlerta({msg:'¡ Los campos no pueden estar vacios !',error:true})
+      setAlerta({msg:'Los campos no pueden estar vacios',error:true})
       return
     }
 
     if(contraseña.length < 6 ){
-      setAlerta({msg:'¡ Contraseñas demasiado corta! agrega minimo 6 caracteres !',error:true})
+      setAlerta({msg:'Contraseñas demasiado corta! agrega minimo 6 caracteres',error:true})
       return
     }
 
     if(contraseña !== repetirContraseña){
-      setAlerta({msg:'¡ Las Contraseñas deben ser iguales !',error:true})
+      setAlerta({msg:'Las Contraseñas deben ser iguales ',error:true})
       return
     }
     try {
@@ -102,7 +102,6 @@ const NuevoPassword = () => {
             {passwordModificado 
             && <nav className="mt-10 lg:flex lg:justify-around"><Link to="/" className="block text-center  text-gray-600 hover:underline hover:cursor-pointer mt-8 text-sm md:text-lg">¡Inicia Sesión!</Link></nav> 
             }
-            <div className="text-center mt-10">Logo</div>
         </div>
           
      </>

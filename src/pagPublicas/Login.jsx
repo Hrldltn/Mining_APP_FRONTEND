@@ -22,12 +22,12 @@ const Login = () => {
     e.preventDefault()
 
     if([correo,contraseña].includes('')){
-        setAlerta({msg:'¡ Tienes campos vacios !', error:true})
+        setAlerta({msg:' Tienes campos vacios ', error:true})
         return;
     }
 
     if(contraseña.length < 6){
-      setAlerta({msg:'¡Contraseñas demasiado corta! agrega minimo 6 caracteres',error:true})
+      setAlerta({msg:'Contraseñas demasiado corta! agrega minimo 6 caracteres',error:true})
       return;
     }
 
@@ -88,7 +88,6 @@ return (
            <div className="md:px-20 mb-4 ">
             <p> ; No olvides que para iniciar sesión debes ingresar con tu correo de Área o el indicado por tu jefatura si es un nuevo usuario debe registrar su contraseña de lo contrario recupere la contraseña olvidada.</p>
            </div>
-           <div className="text-center">Logo</div>
         </div>
     </>
   )

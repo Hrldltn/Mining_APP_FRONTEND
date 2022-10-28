@@ -3,7 +3,7 @@ import{ Link }from 'react-router-dom'
 import ImagenRegistro from '../assets/img/Registro.jpg'
 import Alerta from '../components/Alerta'
 import clienteAxios from '../config/axios'
-
+import Footer from '../components/Footer'
 const Registrar = () => {
   const[correo,setCorreo]=useState('')
   const[contraseña,setcontraseña]=useState('')
@@ -19,17 +19,17 @@ const Registrar = () => {
     e.preventDefault()
     
     if([correo,contraseña,repetirContraseña,area,telefono].includes('')){
-      setAlerta({msg:'¡Los campos no pueden estar vacios!', error:true})
+      setAlerta({msg:'Los campos no pueden estar vacios', error:true})
       return;
     }
     
     if(contraseña !== repetirContraseña){
-      setAlerta({msg:'¡ Las Contraseñas deben ser iguales !' , error:true})
+      setAlerta({msg:' Las Contraseñas deben ser iguales ' , error:true})
       return;
     }
 
     if(contraseña.length < 6){
-      setAlerta({msg:'¡ Contraseñas demasiado corta! agrega minimo 6 caracteres !',error:true})
+      setAlerta({msg:' Contraseñas demasiado corta! agrega minimo 6 caracteres ',error:true})
       return;
     }
     
@@ -43,19 +43,20 @@ const Registrar = () => {
     let apellido = user.split('.')[1]
 
     if(nombre === undefined || apellido === undefined){
-      setAlerta({msg:'¡El correo debe contener un nombre y un apellido separados por un "." !', error:true})
+      setAlerta({msg:'El correo debe contener un nombre y un apellido separados por un "." ', error:true})
       return;
     }
 
     //crear usuario en rest api backend
 
     try{
-      await clienteAxios.post('usuario',{correo,contraseña,area,nombre,apellido})
-      setAlerta({ msg:'¡ Creado correctamente, te hemos enviado un correo !', error:false})
+      await clienteAxios.post('usuario',{correo,contraseña,telefono,area,nombre,apellido})
+      setAlerta({ msg:' Creado correctamente, te hemos enviado un correo ', error:false})
       setCorreo('')
       setcontraseña('')
       setRepetirContraseña('')
       setArea('')
+      setTelefono('')
       
     }catch(error){
       setAlerta({ msg: error.response.data.msg, error:true })
@@ -76,10 +77,10 @@ const Registrar = () => {
 
   return (
     <>
-        <div className="bg-bottom bg-no-repeat bg-cover row-span-3 h-80 md:h-screen" style={sectionStyle}>
-          <h1 className="text-center font-bold text-white text-2xl md:text-4xl pt-36 md:pt-96 md:mr-16">GLOBAL{" "}<span className="text-orange-500">COPPER</span> MINING</h1> 
+        <div className="bg-center bg-no-repeat bg-cover row-span-3 h-80 md:h-screen " style={sectionStyle}>
+          <h1 className="text-center font-bold text-white text-2xl h-screen md:text-4xl pt-36 md:pt-96 md:mr-16 ">GLOBAL{" "}<span className="text-orange-500">COPPER</span> MINING</h1> 
         </div>
-        <div className="2xl:px-5 xl:m-10 shadow-2xl bg-white md:px-2 md:py-5 rounded-xl md:mt-5  md:ml-3 xl:ml-10">
+        <div className="2xl:px-5 xl:m-11 shadow-2xl bg-white md:px-2 md:py-5 rounded-xl md:mt-5 2xl:-translate-y-6  md:ml-3 xl:ml-10">
           <div >
             <h1 className="text-amber-500 font-black text-3xl md:text-4xl text-center pt-10 mb-6">¡Registra tu Contraseña!</h1>
           </div>
@@ -132,7 +133,6 @@ const Registrar = () => {
               <Link to="/" className="block text-center  text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg">¿Ya tienes cuenta? ¡Inicia Sesión!</Link>
               <Link to="/recuperar-password" className="block text-center pb-6 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg ">¡Reestablece tu Contraseña!</Link>
             </nav>
-            <div className="text-center">Logo</div>
         </div>
     
     </>
