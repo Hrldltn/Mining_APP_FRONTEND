@@ -3,7 +3,7 @@ import ImagenConfirmar from '../assets/img/Confirmar.jpg'
 import {Link , useParams} from 'react-router-dom'
 import clienteAxios from '../config/axios'
 import Alerta from '../components/Alerta'
-import Footer from '../components/Footer'
+
 const ConfirmarCuenta = () => {
   const [cuentaConfirmada, setCuentaConfirmada]=useState(false)
   const [cargando, setCargando]=useState(true)
