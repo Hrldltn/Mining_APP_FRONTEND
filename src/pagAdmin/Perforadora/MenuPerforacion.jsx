@@ -34,7 +34,7 @@ const AdminPerforacion = () => {
         <div className="flex flex-col 2xl:w-[23rem] md:w-[23.7rem] xl:w-[18rem] xl:mr-2 ">
           <div className=" bg-right bg-no-repeat bg-cover h-[20rem] rounded-t-2xl rounded-b-sm" style={CondicionIMG}>
             <div className=" w-[16rem] h-full md:w-full   bg-gray-900 bg-opacity-70 rounded-t-2xl">
-              <p className="text-white p-3 pt-20 text-sm md:text-lg">Área de condiciones de perforadora en esta sección encontraras información de la maquinaria  y de su condición.</p>
+              <p className="text-white p-3 pt-20 text-sm md:text-lg">Área de condiciones de perforadora en esta sección encontrarás información de la maquinaria  y de su condición.</p>
             </div>
           </div>
           <div className="container md:mr-5 mb-5 relative  w-[256px] md:w-[380px] xl:w-[400px] overflow-hidden ">
