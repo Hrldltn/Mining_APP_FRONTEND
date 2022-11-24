@@ -36,8 +36,8 @@ const PerforadoraHistory = () => {
                 </div>
                 <div className=" flex xl:container justify-center mt-5 rounded-md drop-shadow-2xl md:-translate-x-2 xl:translate-x-3">
                     <div className="overflow-x-auto relative rounded-xl  drop-shadow-xl w-full h-full hidden md:block">
-                        <table className="w-full md:text-md xl:text-lg text-sm text-left h-max text-gray-500 dark:text-gray-400">
-                            <thead className="text-md text-gray-700 uppercase bg-gray-300 dark:bg-gray-800 dark:text-gray-100">
+                        <table className="w-full md:text-md xl:text-lg text-sm text-left h-max text-gray-500">
+                            <thead className="text-md  uppercase bg-gray-900  text-white">
                                 <tr >
                                    <th scope="col" className="py-3 px-4 2xl:px-px-6">
                                         Nombre
@@ -63,7 +63,7 @@ const PerforadoraHistory = () => {
                                 
                             <tbody>
                                 {results.map(condicion =>(
-                                <tr  key={condicion._id}  className="bg-white border-b dark:bg-gray-700 dark:border-gray-500">
+                                <tr  key={condicion._id}  className=" border-b bg-gray-700 border-gray-500">
                                     <td className="py-4 md:px-2 2xl:pl-5  text-gray-100">
                                         {condicion.Nombre}
                                     </td>
