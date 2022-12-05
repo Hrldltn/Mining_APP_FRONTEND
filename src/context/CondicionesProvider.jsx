@@ -7,7 +7,10 @@ const CondicionContext=createContext()
 export const CondicionProvider = ({children})=>{
 
     const [condiciones , setCondiciones]=useState([])
+    const [condicionesHoy , setCondicionesHoy]=useState({})
+    const [file , setFile]=useState({})
     const [condicion , setCondicion]=useState({})
+
 
     useEffect(()=>{
         const obtenerCondiciones = async () => {
@@ -30,6 +33,29 @@ export const CondicionProvider = ({children})=>{
         }
         obtenerCondiciones()
     },[condiciones])
+
+    useEffect(()=>{
+        const obtenerCondicionestoday = async () => {
+            try {
+                const token = localStorage.getItem('Mining_token')
+                if(!token) return
+                
+                const config = {
+                    headers:{
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+                const{data} = await clienteAxios('/condicion/today',config)
+                setCondicionesHoy(data)
+           
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        obtenerCondicionestoday()
+    },[condicionesHoy])
+
     
     const guardarCondicion = async(condicion) => {
         const token = localStorage.getItem('Mining_token')
@@ -53,14 +79,19 @@ export const CondicionProvider = ({children})=>{
                 const { createdAt, updatedAt, __v, ...condicionGuardada} = data
                 setCondicion([condicionGuardada,...condicion])  
             } catch (error) {
-                console.log(error.response.data.msg)
+                console.log(error)
             }      
         }
     }
+
     
     const obtenerCondicion = (condicion) =>{
         setCondicion(condicion)
     }
+    const obtenerCondicionesDia = (condicionesHoy) =>{
+        setCondicionesHoy(condicionesHoy)
+    }
+
     
     const editarCondicion = (condicion) =>{
         setCondiciones(condicion)
@@ -80,7 +111,7 @@ export const CondicionProvider = ({children})=>{
                     }
                  }
                 const {data} = await clienteAxios.delete(`/condicion/${id}`,config)
-                const condicionActualizado = pacientes.filter(condicionState => condicionState._id!==id)
+                const condicionActualizado = condiciones.filter(condicionState => condicionState._id!==id)
                 setCondiciones(condicionActualizado)
             }catch(error){
                 console.log(error)
@@ -96,7 +127,9 @@ export const CondicionProvider = ({children})=>{
             guardarCondicion,
             obtenerCondicion,
             editarCondicion,
-            eliminarCondicion
+            eliminarCondicion,
+            condicionesHoy,
+            obtenerCondicionesDia,
         }}
         >
             {children}

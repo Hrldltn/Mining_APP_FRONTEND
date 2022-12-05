@@ -1,6 +1,6 @@
 
 import {Link } from 'react-router-dom'
-import {HiChevronDown,HiPencil ,HiOutlineClipboardList,HiOutlineBookOpen} from 'react-icons/hi'
+import {HiChevronDown,HiPencil ,HiOutlineClipboardList,HiOutlineBookOpen,HiOutlineTrendingUp} from 'react-icons/hi'
 import Condicion from '../../assets/img/Condicion.jpg'
 import Tronadura from '../../assets/img/TronaPro.jpg'
 import Traslado from '../../assets/img/Traslado.jpg'
@@ -48,8 +48,9 @@ const AdminPerforacion = () => {
             <div className="bg-white overflow-hidden xl:w-[18rem] 2xl:w-[23rem] transition-all duration-500 rounded-b-lg max-h-0 peer-checked:max-h-96">
               <div className="py-3 list-none">
                 <Link to="Formulario"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Registrar Perforadora</li></Link>
-                <Link to="Formulario/Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condición de Perforadora</li></Link>
-                <Link to="Formulario/Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
+                <Link to="Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condición de Perforadora</li></Link>
+                <Link to="Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
+                <Link to="Estadisticas"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineTrendingUp className="float-right mx-1 mt-1"></HiOutlineTrendingUp>Estadisticas</li></Link>
               </div>
             </div>
           </div>
@@ -73,9 +74,7 @@ const AdminPerforacion = () => {
             </div>
             <div className="bg-white overflow-hidden  xl:w-[18rem] 2xl:w-[23rem] transition-all duration-500 rounded-b-lg max-h-0 peer-checked:max-h-96">
               <div className="py-3 list-none">
-                <Link to="Formulario"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Registrar Perforadora</li></Link>
-                <Link to="Formulario/Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condicion de Perforadora</li></Link>
-                <Link to="Formulario/Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
+                <Link to="Tronadura"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Tronadura Programada</li></Link>
               </div>
             </div>
           </div>
@@ -100,8 +99,9 @@ const AdminPerforacion = () => {
             <div className="bg-white overflow-hidden xl:w-[18rem] 2xl:w-[23rem] transition-all duration-500 rounded-b-lg max-h-0 peer-checked:max-h-96">
               <div className="py-3 list-none">
                 <Link to="Formulario"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Registrar Perforadora</li></Link>
-                <Link to="Formulario/Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condicion de Perforadora</li></Link>
-                <Link to="Formulario/Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
+                <Link to="Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condicion de Perforadora</li></Link>
+                <Link to="Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
+                <Link to="Estadisticas"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineTrendingUp className="float-right mx-1 mt-1"></HiOutlineTrendingUp>Estadisticas</li></Link>
               </div>
             </div>
           </div>
@@ -127,8 +127,9 @@ const AdminPerforacion = () => {
             <div className="bg-white overflow-hidden xl:w-[18rem] 2xl:w-[23rem] transition-all duration-500 rounded-b-lg max-h-0 peer-checked:max-h-96">
               <div className="py-3 list-none">
                 <Link to="Formulario"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Registrar Perforadora</li></Link>
-                <Link to="Formulario/Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condicion de Perforadora</li></Link>
-                <Link to="Formulario/Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
+                <Link to="Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condicion de Perforadora</li></Link>
+                <Link to="Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
+                <Link to="Estadisticas"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineTrendingUp className="float-right mx-1 mt-1"></HiOutlineTrendingUp>Estadisticas</li></Link>
               </div>
             </div>
           </div>
@@ -140,11 +141,5 @@ const AdminPerforacion = () => {
   )
 }
 
-{/* <h1 className="text-amber-500 text-center pt-5">Tronadura Programada</h1>
-<h1 className="text-amber-500 text-center pt-5">Metros de Sondajes</h1>
-<h1 className="text-amber-500 text-center pt-5">Traslado de Perforadora</h1> */}
 
-{/* <Link to="Formulario"><li className="pt-5 hover:underline underline-offset-4 hover:bg-gray-200 pb-2"><HiPencil className="float-right mr-10"></HiPencil>Registrar Perforadora</li></Link>
-<Link to="Formulario/Condicion"><li className="pt-4 hover:underline underline-offset-4 hover:bg-gray-200 pb-2"><HiOutlineClipboardList className="float-right mr-10"></HiOutlineClipboardList>Ver Condicion de Perforadora</li></Link>
-<li className="pt-4 hover:underline underline-offset-4 hover:bg-gray-200 pb-2"><HiOutlineBookOpen className="float-right mr-10"></HiOutlineBookOpen>Ver Historial de Perforadora</li> */}
 export default AdminPerforacion

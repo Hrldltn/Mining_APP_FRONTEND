@@ -16,7 +16,9 @@ import MenuPerforacion from './pagAdmin/Perforadora/MenuPerforacion'
 import PerforadoraForm from './pagAdmin/Perforadora/PerforadoraForm'
 import CondicionList from './pagAdmin/Perforadora/PerforadoraList'
 import PerforadoraHistory from './pagAdmin/Perforadora/PerforadoraHistory'
+import PerforadoraStadistic from './pagAdmin/Perforadora/PerforadoraStatistic'
 
+import Tronadura from './pagAdmin/Tronadura/TronaduraRegistro'
 
 import {AuthProvider} from './context/AuthProvider'
 import {CondicionProvider} from './context/CondicionesProvider'
@@ -47,13 +49,13 @@ function App() {
                       {/* PERFORADORA Y TRONADURA */}
                       <Route path="Perforacion" element={<MenuPerforacion/>}/>
                       <Route path="Perforacion/Formulario" element={<PerforadoraForm/>}/>
-                      <Route path="Perforacion/Formulario/Condicion" element={<CondicionList/>}/>
-                      <Route path="Perforacion/Formulario/Historial" element={<PerforadoraHistory/>}/>
+                      <Route path="Perforacion/Condicion" element={<CondicionList/>}/>
+                      <Route path="Perforacion/Historial" element={<PerforadoraHistory/>}/>
+                      <Route path="Perforacion/Estadisticas" element={<PerforadoraStadistic/>}/>
+                      <Route path="Perforacion/Tronadura" element={<Tronadura/>}/>
 
-                      {/* TRONADURA */}
-                      <Route path="Perforacion" element={<MenuPerforacion/>}/>
-                      <Route path="Perforacion/PerforadoraForm" element={<PerforadoraForm/>}/>
-                      <Route path="Perforacion/PerforadoraForm/Perforadora" element={<CondicionList/>}/>
+                     
+
 
                       {/* TRASLADO */}
                       <Route path="Perforacion" element={<MenuPerforacion/>}/>

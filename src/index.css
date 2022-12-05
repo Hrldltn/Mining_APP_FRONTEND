@@ -8,7 +8,7 @@ body{
 
 .modal {
     position: fixed;
-    background-color: rgb(0 0 0 / 0.95);
+    background-color: rgb(0 0 0 / 0.96);
     top: 0;
     left: 0;
     right: 0;
@@ -52,3 +52,7 @@ body .modal {
 .modal label {
     text-align: left;
 }
+
+#myChart {
+    border: 1px solid black;
+ }

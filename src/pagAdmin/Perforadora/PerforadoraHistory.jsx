@@ -1,19 +1,25 @@
-import {React,useState} from 'react'
-import useCondicion from '../../hooks/useCondicion'
+import {React,useState,useEffect} from 'react'
+import {useCondicion} from '../../hooks/useCondicion'
 import {HiOutlineSearch} from 'react-icons/hi'
+import {Link} from 'react-router-dom'
+import Modal from './ModalPerforadora'
 
 const PerforadoraHistory = () => {
     const {condiciones} = useCondicion()
-    const [search , setSearch] = useState("")
+    const { obtenerCondicion } = useCondicion()
 
-    const [date , setDate]=useState("")
+    const [search , setSearch] = useState("")
+    const {editarCondicion, eliminarCondicion} = useCondicion()
+    const [modal , setModal] = useState(false)
+    const [animarModal , setAnimarModal] = useState(false)
+    const [fecha , setFecha] = useState([])
 
     let results=[]
-    
     if(!search){
         results=condiciones
    
     }else{
+      
         results=condiciones.filter((dato) => dato.Nombre.toLowerCase().includes(search.toLowerCase().trim()) || 
                                              dato.modelo.toLowerCase().includes(search.toLowerCase().trim()) ||
                                              dato.cantidad.toLowerCase().includes(search.toLowerCase().trim()) ||
@@ -21,23 +27,56 @@ const PerforadoraHistory = () => {
                                              dato.fecha.toLowerCase().includes(search.toLowerCase().trim()) ||
                                              dato.user.toLowerCase().includes(search.toLowerCase().trim())
                                     )
-    }
+                                    
+           
+        }
 
+    const handleDetalles = (condicion) =>{
+        obtenerCondicion(condicion)
+        setModal(true)
+    
+        setTimeout(() => {
+            setAnimarModal(true)
+        },300)
+        
+        }
+
+   
+
+    // useEffect(() => {
+    //     condiciones.forEach(element =>{
+    //         const Fecha=element.fecha.toString().split('T')[0]
+    //         fecha.push(Fecha)
+    //         setFecha(fecha)
+    //         // const parts = Fecha.split("-");
+    //         // const fechaObjeto = new Date(parts[0], parts[1]-1, parts[2]); // los meses para JS comienzan en 0
+            
+    //         // //     // Para imprimirlo o obtenerlo en el formato 
+    //         // let options = {year: 'numeric', month: 'long', day: 'numeric' };
+    //         // const fechaFormateada=fechaObjeto.toLocaleDateString('es-ES', options);
+    //         // setFecha(fechaFormateada)
+           
+    //     })
+      
+    // }, []);
+   
     return (
       
         <>  
             {condiciones.length ? (
+
             <>
+                {modal && <Modal setModal={setModal} animarModal={animarModal} setAnimarModal={setAnimarModal}/>}
                 <h2 className="font-black md:text-3xl text-center text-2xl mt-10 pr-10 md:pr-0">Registro Histórico</h2>
                 <p className="md:text-xl text-lg mt-5 mb-10 text-center pr-12 md:pr-0">Toda la información registradas de las{''} <span className="text-amber-600 font-bold">Perforadoras</span> </p>
-                <div className="flex flex-row gap-5 w-full">
-                    <input value={search} onChange={e => setSearch(e.target.value)} type="text" className="md:w-[40rem] xl:w-[40rem] 2xl:w-[40rem] w-[19rem] rounded-md p-2 pl-2 xl:ml-2 text-lg md:text-xl" placeholder="Busca por Nombre, cantidad, etc.."></input>
-                    <HiOutlineSearch size="30" className="mt-1 -translate-x-12 md:-translate-x-20 xl:-translate-x-42  2xl:-translate-x-[6rem] ml-6 text-gray-400"></HiOutlineSearch>
+                <div className={`${modal ? 'hidden':'block'} flex flex-row gap-5 w-full`}>
+                    <input value={search} onChange={e => setSearch(e.target.value)} type="text" className="md:w-[40rem] xl:w-[40rem] 2xl:w-[40rem] w-[21rem] rounded-md p-2 pl-2 xl:ml-2 text-lg md:text-xl" placeholder="Busca por Nombre, cantidad, fecha"></input>
+                    <HiOutlineSearch size="30" className="mt-1 -translate-x-20 md:-translate-x-20 xl:-translate-x-42  2xl:-translate-x-[6rem] ml-6 text-gray-400"></HiOutlineSearch>
                 </div>
-                <div className=" flex xl:container justify-center mt-5 rounded-md drop-shadow-2xl md:-translate-x-2 xl:translate-x-3">
+                <div className={`${modal ? 'hidden':'block'} flex xl:container justify-center mt-5 rounded-md drop-shadow-2xl md:-translate-x-2 xl:translate-x-3`}>
                     <div className="overflow-x-auto relative rounded-xl  drop-shadow-xl w-full h-full hidden md:block">
-                        <table className="w-full md:text-md xl:text-lg text-sm text-left h-max text-gray-500 dark:text-gray-400">
-                            <thead className="text-md text-gray-700 uppercase bg-gray-300 dark:bg-gray-800 dark:text-gray-100">
+                        <table className="w-full md:text-md xl:text-lg text-sm text-left h-max text-gray-500">
+                            <thead className="text-md  uppercase bg-gray-900  text-white">
                                 <tr >
                                    <th scope="col" className="py-3 px-4 2xl:px-px-6">
                                         Nombre
@@ -57,44 +96,64 @@ const PerforadoraHistory = () => {
                                     <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-10">
                                         Autor
                                     </th>
+                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-4">
+                                        Ver detalles
+                                    </th>
+                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-10">
+                                        Eliminar
+                                    </th>
+                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-10">
+                                        Editar
+                                    </th>
                                 </tr>
                             </thead>
 
                                 
                             <tbody>
                                 {results.map(condicion =>(
-                                <tr  key={condicion._id}  className="bg-white border-b dark:bg-gray-700 dark:border-gray-500">
-                                    <td className="py-4 md:px-2 2xl:pl-5  text-gray-100">
-                                        {condicion.Nombre}
-                                    </td>
-                            
-                                    <td className="py-4 2xl: text-gray-100">
-                                        {condicion.modelo}      
-                                    </td>
-                                    <td className="py-4 md:px-8 2xl:px-5 text-gray-100">
-                                        {condicion.cantidad}
-                                    </td>
-                                    <td className="py-4 md:px-2 2xl:px-0 text-gray-100">
-                                        {condicion.estado}
-                                    </td>
-                                    <td className="py-4 text-gray-100 px-2 2xl:px-0">
-                                        {condicion.fecha}
-                                    </td>
-                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
-                                        {condicion.user}
-                                    </td>
-                                </tr>
-                            
+                                    
+                                <tr  key={condicion._id}  className=" border-b bg-gray-700 border-gray-500">
+                                        <td className="py-4 md:px-2 2xl:pl-5  text-gray-100">
+                                            {condicion.Nombre}
+                                        </td>
+                                
+                                        <td className="py-4 2xl: text-gray-100">
+                                            {condicion.modelo}      
+                                        </td>
+                                        <td className="py-4 md:px-8 2xl:px-5 text-gray-100">
+                                            {condicion.cantidad}
+                                        </td>
+                                        <td className="py-4 md:px-2 2xl:px-0 text-gray-100">
+                                            {condicion.estado}
+                                        </td>
+                                        <td className="py-4 text-gray-100 px-2 2xl:px-0">
+                                            {condicion.fecha}
+                                        </td>
+                         
+                                        <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
+                                            {condicion.user}
+                                        </td>
+                                        <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
+                                             <input type="button" value="Ver Detalles" onClick={()=> handleDetalles(condicion)} className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50   w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-400 hover:text-gray-300 duration-300 mr-5 "></input>
+                                        </td>
+                                        <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
+                                            <input type="button" value="Eliminar" className="bg-gradient-to-r from-red-600 to-red-700 shadow-sm shadow-red-600/50  w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300 mr-5 " onClick={() => eliminarCondicion(condicion._id)}></input>
+                                        </td>
+                                        <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
+                                            <Link to="/admin/Perforacion/Formulario"><input type="button" value="Editar" className="bg-gradient-to-r from-sky-600 to-sky-700  shadow-sm shadow-sky-600/50   w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300 mr-5" onClick={() => editarCondicion(condicion)}></input></Link>
+                                        </td>
+                                    </tr>
                                 ))}
+                                
                             </tbody>
                         </table>
                     </div>
                     
                 </div>
-                <div className="container mt-5  flex flex-col items-center -translate-x-5 md:hidden ">
-                        {results.map(condition =>(
+                <div className="container mt-5  flex flex-col items-center -translate-x-16 md:hidden ">
+                        {results.map(condition =>(            
                             <>
-                                <div   key={condition._id}  className="border-b-2 mx-10 drop-shadow-2xl shadow-xl border-gray-300">
+                                <div   key={condition._id}  className="border-b-2 mx-15 drop-shadow-2xl  shadow-xl border-gray-400">
                                     <div className="p-3  rounded-xl w-46 flex flex-col items-start gap-2 border-black">
                                         <p className="font-bold mb-1 text-lg">Nombre: <span className="font-normal">{condition.Nombre}</span></p>
                                         <p className="font-bold mb-1 text-lg">Modelo: <span className="font-normal">{condition.modelo}</span></p>
@@ -123,6 +182,6 @@ const PerforadoraHistory = () => {
        )
     }
     
-    export default PerforadoraHistory
+export default PerforadoraHistory
     
     

@@ -10,11 +10,17 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "chart.js": "^4.0.1",
+    "jspdf": "^2.5.1",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.0.1",
     "react-dom": "^18.2.0",
+    "react-export-excel": "^0.5.3",
+    "react-export-table-to-excel": "^1.0.6",
     "react-icons": "^4.4.0",
     "react-player": "^2.11.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "recharts": "^2.1.16"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

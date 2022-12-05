@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {Outlet , Navigate , Link} from 'react-router-dom'
 
 import {HiMenuAlt3} from 'react-icons/hi'
-import {GiCog,GiEarthCrack,GiMiningHelmet,GiEarthAmerica,GiMining,GiSpanner,GiNotebook,GiCancel} from 'react-icons/gi'
+import {GiCog,GiEarthCrack,GiMiningHelmet,GiEarthAmerica,GiMining,GiSpanner,GiNotebook,GiCancel} from 'react-icons/Gi'
 
 import Header from '../components/Header'
 import Footer from '../components/footer'
@@ -27,7 +27,7 @@ const RutaAdmin = () => {
   
   return (
     <>
-      <section className="flex ">
+      <section className="flex min-h-screen">
           <div className={`bg-gradient-to-r from-gray-700 to-gray-800 min-h-screen ${abrir ? 'w-70':'w-12'} duration-500 text-gray-100`}>
               <div className="py-12 flex justify-end">
                 <HiMenuAlt3 size={26} className="cursor-pointer" onClick={() => setAbrir(!abrir)}/>
@@ -42,7 +42,7 @@ const RutaAdmin = () => {
                         } group flex items-center text-ms gap-3 font-medium p-3 hover:bg-gray-900 rounded-xl`}>
                         
                         <div className="mr-3">{React.createElement(menu?.icon,{size:"26"})}</div>
-                        <h2 style={{transitionDelay:`${i + 2}00ms`}} className={`whitespace-pre duration-500 ${!abrir && 'opacity-0 translate-x-40 overflow-hidden'}`}>{menu?.name}</h2>
+                        <h2 style={{transitionDelay:`${i + 2}00ms`}} className={`whitespace-pre duration-500 ${!abrir && 'opacity-0 translate-x-45 overflow-hidden'}`}>{menu?.name}</h2>
                         <h2 className={`${abrir && "hidden"} absolute left-40 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit`}>{menu?.name}</h2>
                       </Link>
                     ))}

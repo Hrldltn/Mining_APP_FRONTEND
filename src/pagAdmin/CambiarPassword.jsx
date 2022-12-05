@@ -57,7 +57,7 @@ const CambiarPassword =  () => {
                     <input type="password" autoComplete="new-password" placeholder="Registra tu nueva contraseña" name="new_password" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" onChange={e => setNew_Password(e.target.value)}></input>
                 </div>
                 <div className="px-4 md:px-20 mt-5 py-5 flex flex-col items-center ">
-                  <input type="submit" value='Guardar Cambios'  className="bg-gradient-to-r from-amber-600 to-amber-700 shadow-lg shadow-amber-600/50  rounded-xl w-full p-2 mt-3 font-bold md:text-2xl text-lg text-white hover:cursor-pointer  hover:shadow-amber-400 hover:text-gray-300 duration-300"></input>
+                  <input type="submit" value='Guardar Cambios'  className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50  rounded-xl w-full p-2 mt-3 font-bold md:text-2xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-400 hover:text-gray-300 duration-300"></input>
                 </div>
             </form>
         </div>

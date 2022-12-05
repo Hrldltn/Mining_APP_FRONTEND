@@ -76,7 +76,7 @@ const EditarPerfil = () => {
                   <input type="text" disabled  placeholder="" className="border w-full p-3 mt-3 bg-gray-200 rounded-xl mb-10" name="area" value={perfil.area || ''}></input>
               </div>
               <div className="px-4 md:px-20 mt-5 py-5 flex flex-col items-center ">
-                <input type="submit" value='Guardar Cambios'  className="bg-gradient-to-r from-amber-600 to-amber-700 shadow-lg shadow-amber-600/50  rounded-xl w-full p-2 mt-3 font-bold md:text-2xl text-lg text-white hover:cursor-pointer  hover:shadow-amber-400 hover:text-gray-300 duration-300"></input>
+                <input type="submit" value='Guardar Cambios'  className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50  rounded-xl w-full p-2 mt-3 font-bold md:text-2xl text-lg text-white hover:cursor-pointer  hover:shadow-amber-400 hover:text-gray-300 duration-300"></input>
               </div>
           </form>
       </div>
