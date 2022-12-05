@@ -5,11 +5,8 @@ import {Link} from 'react-router-dom'
 import Modal from './ModalPerforadora'
 
 const PerforadoraHistory = () => {
-    const {condiciones} = useCondicion()
-    const { obtenerCondicion } = useCondicion()
-
+    const {condiciones , obtenerCondicion ,editarCondicion, eliminarCondicion} = useCondicion()
     const [search , setSearch] = useState("")
-    const {editarCondicion, eliminarCondicion} = useCondicion()
     const [modal , setModal] = useState(false)
     const [animarModal , setAnimarModal] = useState(false)
     const [fecha , setFecha] = useState([])
@@ -130,6 +127,15 @@ const PerforadoraHistory = () => {
                                     </td>
                                     <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
                                         {condicion.user}
+                                    </td>
+                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
+                                        <input type="button" value="Ver Detalles" onClick={()=> handleDetalles(condicion)} className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50  rounded-lg w-40 p-2 md:pr-40 xl:pr-0 font-bold md:text-xl mr-5 text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300"></input>
+                                    </td>
+                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
+                                        <input type="button" value="Eliminar" className="bg-gradient-to-r from-red-600 to-red-700 shadow-sm shadow-red-600/50  rounded-lg w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300 mr-5 " onClick={() => eliminarCondicion(condicion._id)}></input>
+                                    </td>
+                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
+                                        <Link to="/admin/Perforacion/Formulario"><input type="button" value="Editar" className="bg-gradient-to-r from-sky-600 to-sky-700  shadow-sm shadow-sky-600/50  rounded-lg w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300 mr-5" onClick={() => editarCondicion(condicion)}></input></Link>
                                     </td>
                                 </tr>
                             

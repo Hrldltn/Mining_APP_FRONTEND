@@ -128,10 +128,10 @@ const CondicionPer = () => {
     e.preventDefault()
  
     
-    if(!imagen){
-      setAlerta({msg:'Debes ingresar una imagen', error:true})
-      return;
-    }
+    // if(!imagen){
+    //   setAlerta({msg:'Debes ingresar una imagen', error:true})
+    //   return;
+    // }
     
     const Perforadora =[cantidad,Nombre,estado,modelo]
     if(Perforadora.includes('') || 
@@ -173,7 +173,7 @@ const CondicionPer = () => {
       setAlerta({msg:'Perforadora Editada Correctamente', error:false})
       setTimeout(() => {
         setAlerta({})
-        return window.location.href = "/Condicion";
+        return window.location.href = "Condicion";
       },1300)
     }
     
