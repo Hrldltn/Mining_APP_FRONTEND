@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react'
 import{ Link } from 'react-router-dom'
 import Alerta from '../../components/Alerta'
-import {useCondicion} from  '../../hooks/useCondicion'
+import useCondicion from  '../../hooks/useCondicion'
 import useAuth from '../../hooks/useAuth'
 
 const CondicionPer = () => {
@@ -30,7 +30,7 @@ const CondicionPer = () => {
   let user = nombre + ' ' + apellido
 
 
-  const {guardarCondicion,condiciones} = useCondicion()
+  const {guardarCondicion,condiciones} = useCondicion(1)
 
 
   useEffect(() => {
@@ -156,7 +156,7 @@ const CondicionPer = () => {
       }
     }
     
-    guardarCondicion({cantidad,Nombre,estado,modelo,id,user,observacion,imagen,detallesMantencion,detallesMalEstado})
+    guardarCondicion({cantidad,Nombre,estado,modelo,id,user,observacion,detallesMantencion,detallesMalEstado,imagen})
     
     setCantidad('')
     setObservacion('')
@@ -197,7 +197,7 @@ const CondicionPer = () => {
                 <label className="uppercase text-gray-600 block md:text-xl text-lg font-bold">
                   Imagen de la Perforadora:
                 </label>
-                <input type="file" accept=".jpg, .jpeg, .png" className="border w-full p-3 mt-3 md:text-xl text-lg bg-gray-50 rounded-xl" name="file" onChange={handleFileChange}></input>
+                <input type="file" accept=".jpg, .jpeg, .png" className="border w-full p-3 mt-3 md:text-xl text-lg bg-gray-50 rounded-xl" filename="file" onChange={handleFileChange}></input>
                 <img className={`img-fluid ${imagen ? 'block' : 'hidden'}`} src={file} alt="img"></img>
             </div>
             <div className="px-4 md:px-20">

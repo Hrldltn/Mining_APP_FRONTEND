@@ -1,16 +1,18 @@
 import {React,useState,useEffect} from 'react'
-import {useCondicion} from '../../hooks/useCondicion'
+import useCondicion from '../../hooks/useCondicion'
 import {HiOutlineSearch} from 'react-icons/hi'
 import {Link} from 'react-router-dom'
 import Modal from './ModalPerforadora'
+import {GiEyeTarget,GiPencil,GiTrashCan} from 'react-icons/Gi'
 
 const PerforadoraHistory = () => {
-    const {condiciones , obtenerCondicion ,editarCondicion, eliminarCondicion} = useCondicion()
+    const {condiciones , obtenerCondicion ,editarCondicion, eliminarCondicion} = useCondicion(1)
     const [search , setSearch] = useState("")
     const [modal , setModal] = useState(false)
     const [animarModal , setAnimarModal] = useState(false)
     const [fecha , setFecha] = useState([])
-
+    const [mostrarMantencion , setMostrarMantencion]= useState(false)
+    const [mostrarMalEstado , setMostrarMalEstado]= useState(false)
     let results=[]
     if(!search){
         results=condiciones
@@ -22,11 +24,13 @@ const PerforadoraHistory = () => {
                                              dato.cantidad.toLowerCase().includes(search.toLowerCase().trim()) ||
                                              dato.estado.toLowerCase().includes(search.toLowerCase().trim()) ||
                                              dato.fecha.toLowerCase().includes(search.toLowerCase().trim()) ||
-                                             dato.user.toLowerCase().includes(search.toLowerCase().trim())
+                                             dato.user.toLowerCase().includes(search.toLowerCase().trim()) ||
+                                             dato.observacion.toLowerCase().includes(search.toLowerCase().trim())
                                     )
                                     
            
         }
+    
 
     const handleDetalles = (condicion) =>{
         obtenerCondicion(condicion)
@@ -75,32 +79,29 @@ const PerforadoraHistory = () => {
                         <table className="w-full md:text-md xl:text-lg text-sm text-left h-max text-gray-500 dark:text-gray-400">
                             <thead className="text-md text-gray-700 uppercase bg-gray-300 dark:bg-gray-800 dark:text-gray-100">
                                 <tr >
-                                   <th scope="col" className="py-3 px-4 2xl:px-px-6">
+                                   <th scope="col" className="py-3 px-4 2xl:px-6">
                                         Nombre
                                     </th>
-                                    <th scope="col" className="py-3 px-10 2xl:px-13">
+                                    <th scope="col" className="py-3 px-10 2xl:px-20">
                                         Modelo
                                     </th>
-                                    <th scope="col" className="py-3 md:pr-5">
+                                    <th scope="col" className="py-3 md:pr-5 pl-10">
                                         Cantidad
                                     </th>
-                                    <th scope="col" className="py-3 px-5">
+                                    <th scope="col" className="py-3 px-20">
                                         Estado
                                     </th>
-                                    <th scope="col" className="py-3 px-6 xl:px-16">
+                                    <th scope="col" className="py-3 px-6 xl:pr-20">
                                         Fecha
                                     </th>
-                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-10">
+                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:pl-10">
                                         Autor
                                     </th>
-                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-4">
-                                        Ver detalles
+                                    <th scope="col" className="py-3 md:px-6 2xl:pl-20">
+                                        observación
                                     </th>
-                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-10">
-                                        Eliminar
-                                    </th>
-                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-10">
-                                        Editar
+                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-0">
+                                        Acciones
                                     </th>
                                 </tr>
                             </thead>
@@ -108,34 +109,41 @@ const PerforadoraHistory = () => {
                                 
                             <tbody>
                                 {results.map(condicion =>(
-                                <tr  key={condicion._id}  className="bg-white border-b dark:bg-gray-700 dark:border-gray-500">
-                                    <td className="py-4 md:px-2 2xl:pl-5  text-gray-100">
+                                <tr  key={condicion._id}  className="border-b bg-gray-700 border-gray-500">
+                                    <td className="py-4 md:px-2 text-center text-gray-100">
                                         {condicion.Nombre}
                                     </td>
                             
-                                    <td className="py-4 2xl: text-gray-100">
+                                    <td className="py-4 pb-10 text-center text-gray-100">
                                         {condicion.modelo}      
                                     </td>
-                                    <td className="py-4 md:px-8 2xl:px-5 text-gray-100">
+                                    <td className="py-4 pb-10 md:px-8 text-center text-gray-100">
                                         {condicion.cantidad}
                                     </td>
-                                    <td className="py-4 md:px-2 2xl:px-0 text-gray-100">
+                                    <td className="py-4 pb-10 md:px-2 text-center text-gray-100">
                                         {condicion.estado}
                                     </td>
-                                    <td className="py-4 text-gray-100 px-2 2xl:px-0">
-                                        {condicion.fecha}
+                                    <td className="py-4 pb-10 text-gray-100 px-2 2xl:px-5">
+                                        {condicion.fecha.split('T')[0]}
                                     </td>
-                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
+                                    <td className="py-4 pb-10 md:px-6 text-center text-gray-100">
                                         {condicion.user}
                                     </td>
-                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
-                                        <input type="button" value="Ver Detalles" onClick={()=> handleDetalles(condicion)} className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50  rounded-lg w-40 p-2 md:pr-40 xl:pr-0 font-bold md:text-xl mr-5 text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300"></input>
+                                    <td className="py-4 pb-10 md:px-6 2xl:pr-20 text-center text-gray-100">
+                                        {condicion.observacion}
                                     </td>
-                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
-                                        <input type="button" value="Eliminar" className="bg-gradient-to-r from-red-600 to-red-700 shadow-sm shadow-red-600/50  rounded-lg w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300 mr-5 " onClick={() => eliminarCondicion(condicion._id)}></input>
+                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100 flex gap-2" onClick={()=> handleDetalles(condicion)}>
+                                        <GiEyeTarget size={26} className="cursor-pointer"/>
+                                        <p className="cursor-pointer">Ver Detalles</p>
+                                    </td>  
+                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100 flex gap-2 flex-row " onClick={() => editarCondicion(condicion)}>
+                                        <Link to="/admin/Perforacion/Formulario"><GiPencil size={26} className="cursor-pointer" onClick={() => editarCondicion(condicion)}/></Link>
+                                        <p className="cursor-pointer text-sky-400">Editar</p>
+                                        
                                     </td>
-                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100">
-                                        <Link to="/admin/Perforacion/Formulario"><input type="button" value="Editar" className="bg-gradient-to-r from-sky-600 to-sky-700  shadow-sm shadow-sky-600/50  rounded-lg w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300 mr-5" onClick={() => editarCondicion(condicion)}></input></Link>
+                                    <td className="py-4 md:px-6 2xl:pr-20 2xl:-translate-x-7 text-gray-100 flex gap-2" onClick={() => eliminarCondicion(condicion._id)}>
+                                        <GiTrashCan size={26} className="cursor-pointer" />
+                                        <p className="cursor-pointer text-red-500">Eliminar</p>
                                     </td>
                                 </tr>
                             
@@ -146,16 +154,16 @@ const PerforadoraHistory = () => {
                     </div>
                     
                 </div>
-                <div className="container mt-5  flex flex-col items-center -translate-x-16 md:hidden ">
+                <div className="container mt-5  flex flex-col items-center md:hidden ">
                         {results.map(condition =>(            
                             <>
-                                <div   key={condition._id}  className="border-b-2 mx-15 drop-shadow-2xl  shadow-xl border-gray-400">
-                                    <div className="p-3  rounded-xl w-46 flex flex-col items-start gap-2 border-black">
+                                <div   key={condition._id}  className="border-b-2 mx-6 drop-shadow-2xl  shadow-xl border-gray-400 mb-10">
+                                    <div className="p-3 rounded-xl w-46 flex flex-col items-start gap-1 border-black">
                                         <p className="font-bold mb-1 text-lg">Nombre: <span className="font-normal">{condition.Nombre}</span></p>
                                         <p className="font-bold mb-1 text-lg">Modelo: <span className="font-normal">{condition.modelo}</span></p>
                                         <p className="font-bold mb-1 text-lg">Cantidad: <span className="font-normal">{condition.cantidad}</span></p>
                                         <p className="font-bold mb-1 text-lg">Estado: <span className="font-normal">{condition.estado}</span></p>
-                                        <p className="font-bold mb-1 text-lg">Fecha: <span className="font-normal">{condition.fecha}</span> </p>
+                                        <p className="font-bold mb-1 text-lg">Fecha: <span className="font-normal">{condition.fecha.split('T')[0]}</span> </p>
                                         <p className="font-bold mb-1 text-lg">Ingresado por: <span className="font-normal">{condition.user}</span></p>
                                     </div>                                    
                                 </div>

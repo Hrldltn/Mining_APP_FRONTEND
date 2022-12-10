@@ -1,13 +1,13 @@
 import{ useState ,useEffect} from 'react'
 
 import Modal from './ModalPerforadora'
-import {useCondicion} from "../../hooks/useCondicion"
+import useCondicion from "../../hooks/useCondicion"
 
 const Condicion = ({condicion}) => {
   const {Nombre, modelo, fecha ,estado} = condicion
   const [modal , setModal] = useState(false)
   const [animarModal , setAnimarModal] = useState(false)
-  const { obtenerCondicion } = useCondicion()
+  const { obtenerCondicion } = useCondicion(1)
   const [Rojo , setRojo]= useState(false)
   const [Amarillo , setAmarillo]= useState(false)
  
@@ -60,7 +60,7 @@ const Condicion = ({condicion}) => {
 
         <div className="relative -translate-y-32">
           <span className={`absolute top-0 right-0 -mr-1 w-4 h-4 rounded-full ${Amarillo ? 'bg-yellow-500 ' : 'bg-green-500'}
-                                      ${Rojo ? 'bg-red-500' : 'bg-yellow-500'} animate-[ping_2s_infinite]`}></span>
+                                      ${Rojo ? 'bg-red-500' : 'bg-yellow-500'} ${modal ? 'hidden' : 'animate-[ping_2s_infinite]' }`}></span>
           <span className="absolute top-0 right-0 -mr-1 w-4 h-4 rounded-full ${Amarillo ? 'bg-yellow-500 ' : 'bg-green-500'}
                                       ${Rojo ? 'bg-red-500' : 'bg-yellow-500'}"></span>
           {/* <p className="float-right translate-y-3 font-bold text-gray-700 bg-gray-300 rounded-lg p-2">{estado}</p> */}

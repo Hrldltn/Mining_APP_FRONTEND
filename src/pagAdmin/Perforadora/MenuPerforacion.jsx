@@ -73,8 +73,8 @@ const AdminPerforacion = () => {
               <HiChevronDown size="30"></HiChevronDown>
             </div>
             <div className="bg-white overflow-hidden  xl:w-[18rem] 2xl:w-[23rem] transition-all duration-500 rounded-b-lg max-h-0 peer-checked:max-h-96">
-              <div className="py-3 list-none">
-                <Link to="Tronadura"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Tronadura Programada</li></Link>
+              <div className="py-3 list-none">         
+                <Link to="Tronadura"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Programar Tronadura</li></Link>
               </div>
             </div>
           </div>

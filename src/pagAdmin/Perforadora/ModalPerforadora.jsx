@@ -1,13 +1,13 @@
 import {useState , useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {useCondicion} from "../../hooks/useCondicion"
+import useCondicion from "../../hooks/useCondicion"
 import CerrarBtn from '../../assets/img/cerrar.svg'
 
 const Modal = ({setModal,animarModal,setAnimarModal}) => {
 
   
-  const { condicion } = useCondicion()
-  const {editarCondicion, eliminarCondicion} = useCondicion()
+  const { condicion } = useCondicion(1)
+  const {editarCondicion, eliminarCondicion} = useCondicion(1)
   const [Rojo , setRojo]= useState(false)
   const [Amarillo , setAmarillo]= useState(false)
   const [mostrarMantencion , setMostrarMantencion]= useState(false)

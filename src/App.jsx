@@ -22,12 +22,14 @@ import Tronadura from './pagAdmin/Tronadura/TronaduraRegistro'
 
 import {AuthProvider} from './context/AuthProvider'
 import {CondicionProvider} from './context/CondicionesProvider'
+import {TronaduraProvider} from './context/TronaduraProvider'
 
 function App() {
   return (
       <BrowserRouter>
         <AuthProvider>
           <CondicionProvider>
+            <TronaduraProvider>
               <Routes>
                   {/* PUBLICAS */}
                   <Route path="/" element={<AuthLayout/>}> 
@@ -68,6 +70,7 @@ function App() {
                       <Route path="Perforacion/PerforadoraForm/Perforadora" element={<CondicionList/>}/>
                 </Route>
               </Routes>
+            </TronaduraProvider>
           </CondicionProvider>
         </AuthProvider>            
       </BrowserRouter>
