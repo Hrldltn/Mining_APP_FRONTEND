@@ -3,7 +3,7 @@ import useCondicion from '../../hooks/useCondicion'
 import {HiOutlineSearch} from 'react-icons/hi'
 import {Link} from 'react-router-dom'
 import Modal from './ModalPerforadora'
-import {GiEyeTarget,GiPencil,GiTrashCan} from 'react-icons/Gi'
+import {GiEyeTarget,GiPencil,GiTrashCan} from 'react-icons/gi'
 
 const PerforadoraHistory = () => {
     const {condiciones , obtenerCondicion ,editarCondicion, eliminarCondicion} = useCondicion(1)
