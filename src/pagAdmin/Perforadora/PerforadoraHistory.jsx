@@ -130,7 +130,7 @@ const PerforadoraHistory = () => {
                                         {condicion.user}
                                     </td>
                                     <td className="py-4 pb-10 md:px-6 2xl:pr-20 text-center text-gray-100">
-                                        {condicion.observacion}
+                                        {condicion.observacion ? condicion.observacion : 'no existe observación'}
                                     </td>
                                     <td className="py-4 md:px-6 2xl:px-0 text-gray-100 flex gap-2" onClick={()=> handleDetalles(condicion)}>
                                         <GiEyeTarget size={26} className="cursor-pointer"/>
