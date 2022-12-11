@@ -77,7 +77,8 @@ export const CondicionProvider = ({children})=>{
             try {
                 const {data} = await clienteAxios.post('/condicion',condicion,config)
                 const { createdAt, updatedAt, __v, ...condicionGuardada} = data
-                setCondicion([condicionGuardada,...condicion])  
+            
+                setCondicion([condicionGuardada,...condicion])
             } catch (error) {
                 console.log(error)
             }      

@@ -6,9 +6,9 @@ import LineChart from '../../components/Graph/LineChart'
 import CircleChart from '../../components/Graph/CircleChart'
 
 
-const Perforadorastatistic = () => {
+const Perforadorastatistic = (val) => {
   const {condiciones} = useCondicion(1)
-
+  
   var fecha = condiciones.map((data) =>{
         const Fecha=data.fecha.toString().split('T')[0]
         const parts = Fecha.split("-");
@@ -20,9 +20,9 @@ const Perforadorastatistic = () => {
       return fechaFormateada
   })
 
-  const estado = condiciones.map((data) => data.estado)
+  let estado = ""
 
-  let [UpdateInfo, setUpdateInfo] = useState(1)
+  let [UpdateInfo, setUpdateInfo] = useState(4)
 
   let [BegingData, setBegingData] = useState(1)
   let [manTotal, setmanTotal] = useState(0)
@@ -35,6 +35,17 @@ const Perforadorastatistic = () => {
   let [totalMalEstado, setTotalMalEstado] = useState(0)
 
   let NameEstado = [...new Set(estado)];
+  const modelo = condiciones.map((data) => data.modelo)
+  const mantencionSwitch=estado.includes('En Mantencion');
+  const malEstadoSwitch=estado.includes('Mal Estado');
+  const buenEstadoSwitch=estado.includes('Buen Estado');
+
+  
+  let mantencion=[]
+  let malEstado=[]
+  let buenEstado=[]
+  const NameFecha = [...new Set(fecha)];
+  const NameModelo = [...new Set(modelo)];
 
   let [estadoPorciento , setEstadoPorciento] = useState({
       
@@ -46,18 +57,71 @@ const Perforadorastatistic = () => {
       }]
 })
 
+const [cantidadData , setCantidadData] = useState({
+  labels:fecha,
+  datasets:[{
+    label:"Cantidad de perforadoras ingresadas por fecha",
+    data:cantidadPerfo,
+    backgroundColor: '#42C3FF'
+    }]
+});
+
+const [cantidadEstado , setCantidadEstado] = useState({
+  labels:modelo,
+  datasets: [
+    {
+      label: 'Mantención',
+      data: detallesMantencion,
+      backgroundColor:'#F3FF00',
+      borderColor: '#F3FF00',
+      yAxisID: 'y',
+    },
+    {
+      label: 'Mal Estado',
+      data: detallesMalEstado,
+      backgroundColor: '#FF0000',
+      borderColor: '#FF0000',
+      yAxisID: 'y1',
+    }
+  ]
+});
+
+var cantidadPerfo = condiciones.map((data) => data.cantidad);
+
+var detallesMantencion = condiciones.map((data) => data.detallesMantencion.length);
+var detallesMalEstado = condiciones.map((data) => data.detallesMalEstado.length);
+
+
+if(mantencionSwitch){
+  mantencion=condiciones.filter((dato) => dato.estado.includes('En Mantencion'))
+}
+
+if(malEstadoSwitch){
+  malEstado=condiciones.filter((dato) => dato.estado.includes('Mal Estado'))
+}
+if(buenEstadoSwitch){
+  buenEstado=condiciones.filter((dato) => dato.estado.includes('Buen Estado'))
+}
+
+
+
   useEffect(() => {
-    if(UpdateInfo == 1)
+    if(UpdateInfo > 1)
     {
       // Poner funciones a recargar despues de renderizar
       ReloadData()
-      setUpdateInfo(0)
+      let value = UpdateInfo - 1
+      console.log(value)
+      setUpdateInfo(value)
       console.log("endReload")
     }
   })
 
   const ReloadData = () =>
   {
+
+    condiciones.map((data) => data.estado)
+
     var cantidad = 0
     var cantidadbuenos = 0
     var cantidadmantenidos = 0
@@ -102,57 +166,17 @@ const Perforadorastatistic = () => {
         backgroundColor: ['#13E51D','#E5F009','#F00E0E'],
         }]
     })
-  }
 
-  if(BegingData == 1)
-  {
-    ReloadData()
-    console.log("iniciate")
-    setBegingData(0)
-  }
-  
-  var cantidadPerfo = condiciones.map((data) => data.cantidad);
-
-  var detallesMantencion = condiciones.map((data) => data.detallesMantencion.length);
-  var detallesMalEstado = condiciones.map((data) => data.detallesMalEstado.length);
- 
-
-  //const totalPerforadora = condiciones.map((data) => parseInt(data.cantidad)).reduce((a, b) => (a + b));
-  // const totalEstado = condiciones.map((data) => (data.estado)).length;
-
-  const modelo = condiciones.map((data) => data.modelo)
-  const mantencionSwitch=estado.includes('En Mantencion');
-  const malEstadoSwitch=estado.includes('Mal Estado');
-  const buenEstadoSwitch=estado.includes('Buen Estado');
-
-  
-  let mantencion=[]
-  let malEstado=[]
-  let buenEstado=[]
-  const NameFecha = [...new Set(fecha)];
-  const NameModelo = [...new Set(modelo)];
-
-  if(mantencionSwitch){
-    mantencion=condiciones.filter((dato) => dato.estado.includes('En Mantencion'))
-  }
-
-  if(malEstadoSwitch){
-    malEstado=condiciones.filter((dato) => dato.estado.includes('Mal Estado'))
-  }
-  if(buenEstadoSwitch){
-    buenEstado=condiciones.filter((dato) => dato.estado.includes('Buen Estado'))
-  }
-
-  const [cantidadData , setCantidadData] = useState({
+    setCantidadData({
       labels:fecha,
       datasets:[{
         label:"Cantidad de perforadoras ingresadas por fecha",
         data:cantidadPerfo,
         backgroundColor: '#42C3FF'
         }]
-  });
-
-  const [cantidadEstado , setCantidadEstado] = useState({
+    })
+    
+    setCantidadEstado({
       labels:modelo,
       datasets: [
         {
@@ -170,10 +194,20 @@ const Perforadorastatistic = () => {
           yAxisID: 'y1',
         }
       ]
-  });
+    })
+  }
+
+  if(BegingData == 1)
+  {
+    ReloadData()
+    console.log("iniciate")
+    setBegingData(0)
+  }
+  
+ 
 
    
-      function generatePDF(){
+    function generatePDF(){
         let pdf = new jsPDF()
 
         const canvasBar = document.getElementById('barChar')

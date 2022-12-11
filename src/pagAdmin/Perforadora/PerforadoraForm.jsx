@@ -126,7 +126,7 @@ const CondicionPer = () => {
   
   const handleSubmit= async e =>{
     e.preventDefault()
- 
+
     
     // if(!imagen){
     //   setAlerta({msg:'Debes ingresar una imagen', error:true})
