@@ -20,18 +20,106 @@ const Perforadorastatistic = () => {
       return fechaFormateada
   })
 
+  const estado = condiciones.map((data) => data.estado)
+
+  let [UpdateInfo, setUpdateInfo] = useState(1)
+
+  let [BegingData, setBegingData] = useState(1)
+  let [manTotal, setmanTotal] = useState(0)
+  let [buenTotal, setbuenTotal] = useState(0)
+  let [malTotal, setmalTotal] = useState(0)
+  let [totalPerforadora, setTotalPerforadora] = useState(0)
+
+  let [totalBuenEstado, setTotalBuenEstado] = useState(0)
+  let [totalMantencion, setTotalMantencion] = useState(0)
+  let [totalMalEstado, setTotalMalEstado] = useState(0)
+
+  let NameEstado = [...new Set(estado)];
+
+  let [estadoPorciento , setEstadoPorciento] = useState({
+      
+    labels:NameEstado,
+    datasets:[{
+      label:"Porcentaje de maquinaria por estado" ,
+      data:[totalBuenEstado,totalMantencion,totalMalEstado],
+      backgroundColor: ['#13E51D','#E5F009','#F00E0E'],
+      }]
+})
+
+  useEffect(() => {
+    if(UpdateInfo == 1)
+    {
+      // Poner funciones a recargar despues de renderizar
+      ReloadData()
+      setUpdateInfo(0)
+      console.log("endReload")
+    }
+  })
+
+  const ReloadData = () =>
+  {
+    var cantidad = 0
+    var cantidadbuenos = 0
+    var cantidadmantenidos = 0
+    var cantidadmalos = 0
+    
+    for( var i = 0; i < condiciones.length; i++)
+    {
+      cantidad = cantidad + parseInt(condiciones[i].cantidad)
+
+      if(condiciones[i].estado == "Buen Estado")
+      {
+        cantidadbuenos = cantidadbuenos + parseInt(condiciones[i].cantidad)
+      }
+      if(condiciones[i].estado == "En Mantencion")
+      {
+        cantidadmantenidos = cantidadmantenidos + parseInt(condiciones[i].cantidad)
+      }
+      if(condiciones[i].estado == "Mal Estado")
+      {
+        cantidadmalos = cantidadmalos + parseInt(condiciones[i].cantidad)
+      }
+     
+    }
+    setTotalPerforadora(cantidad)
+    setmanTotal(cantidadmantenidos)
+    setbuenTotal(cantidadbuenos)
+    setmalTotal(cantidadmalos)
+
+
+    let totalBueno = ((cantidadbuenos*100)/cantidad).toFixed(2)
+    let totalMantencimiento = ((cantidadmantenidos*100)/cantidad).toFixed(2)
+    let totalFallados = ((cantidadmalos*100)/cantidad).toFixed(2)
+    setTotalBuenEstado(totalBueno)
+    setTotalMantencion(totalMantencimiento)
+    setTotalMalEstado(totalFallados)
+    
+    setEstadoPorciento({
+      labels:NameEstado,
+      datasets:[{
+        label:"Porcentaje de maquinaria por estado" ,
+        data:[totalBueno,totalMantencimiento,totalFallados],
+        backgroundColor: ['#13E51D','#E5F009','#F00E0E'],
+        }]
+    })
+  }
+
+  if(BegingData == 1)
+  {
+    ReloadData()
+    console.log("iniciate")
+    setBegingData(0)
+  }
+  
   var cantidadPerfo = condiciones.map((data) => data.cantidad);
 
   var detallesMantencion = condiciones.map((data) => data.detallesMantencion.length);
   var detallesMalEstado = condiciones.map((data) => data.detallesMalEstado.length);
  
 
-  const totalPerforadora = condiciones.map((data) => parseInt(data.cantidad)).reduce((a, b) => (a + b));
+  //const totalPerforadora = condiciones.map((data) => parseInt(data.cantidad)).reduce((a, b) => (a + b));
   // const totalEstado = condiciones.map((data) => (data.estado)).length;
 
-
-
-  const estado = condiciones.map((data) => data.estado)
   const modelo = condiciones.map((data) => data.modelo)
   const mantencionSwitch=estado.includes('En Mantencion');
   const malEstadoSwitch=estado.includes('Mal Estado');
@@ -41,7 +129,6 @@ const Perforadorastatistic = () => {
   let mantencion=[]
   let malEstado=[]
   let buenEstado=[]
-  const NameEstado = [...new Set(estado)];
   const NameFecha = [...new Set(fecha)];
   const NameModelo = [...new Set(modelo)];
 
@@ -56,10 +143,6 @@ const Perforadorastatistic = () => {
     buenEstado=condiciones.filter((dato) => dato.estado.includes('Buen Estado'))
   }
 
-  const manTotal=mantencion.map((data) => parseInt(data.cantidad)).reduce((a, b) => (a + b))
-  const buenTotal=buenEstado.map((data) => parseInt(data.cantidad)).reduce((a, b) => (a + b))
-  const malTotal=malEstado.map((data) => parseInt(data.cantidad)).reduce((a, b) => (a + b))
-  
   const [cantidadData , setCantidadData] = useState({
       labels:fecha,
       datasets:[{
@@ -88,21 +171,8 @@ const Perforadorastatistic = () => {
         }
       ]
   });
-  let totalBuenEstado = ((buenTotal*100)/totalPerforadora).toFixed(2)
-  let totalMantencion = ((manTotal*100)/totalPerforadora).toFixed(2)
-  let totalMalEstado = ((malTotal*100)/totalPerforadora).toFixed(2)
 
-  const [estadoPorciento , setEstadoPorciento] = useState({
-      
-      labels:NameEstado,
-      datasets:[{
-        label:"Porcentaje de maquinaria por estado" ,
-        data:[totalBuenEstado,totalMantencion,totalMalEstado],
-        backgroundColor: ['#13E51D','#E5F009','#F00E0E'],
-        }]
-  })
-  
-      
+   
       function generatePDF(){
         let pdf = new jsPDF()
 
@@ -157,7 +227,6 @@ const Perforadorastatistic = () => {
                   </p>
               </div>
               <button type="button" className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50  rounded-xl  p-2 mb-5 font-bold md:text-2xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-100 duration-300" onClick={generatePDF}>Descargar graficos en PDF</button>
-              
               
           </div>
       </div>
