@@ -38,13 +38,25 @@ const Tronadura = () => {
   let user = nombre + ' ' + apellido
 
   
-  const {guardarTronadura} = useCondicion(2)
+  const {guardarTronadura,tronaduras} = useCondicion(2)
 
 
   useEffect(() => {
     setPerfil(auth)
 
   },[auth])
+
+  // useEffect(()=>{
+  //   if(tronaduras?.Nombre){
+  //     setNombre(tronaduras.Nombre)
+  //     settronaduraDoc(tronaduras.Nombre)
+  //     setCantidad(tronaduras.cantidad)
+  //     setEstado(tronaduras.estado)
+  //     setModelo(tronaduras.modelo)
+  //     setId(tronaduras._id)
+  //     setEdicion(true)    
+  //   }
+  // },[tronaduras])
 
 
 

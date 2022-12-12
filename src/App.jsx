@@ -15,10 +15,12 @@ import EditarPerfil from './pagAdmin/EditarPerfil'
 import MenuPerforacion from './pagAdmin/Perforadora/MenuPerforacion'
 import PerforadoraForm from './pagAdmin/Perforadora/PerforadoraForm'
 import CondicionList from './pagAdmin/Perforadora/PerforadoraList'
+
 import PerforadoraHistory from './pagAdmin/Perforadora/PerforadoraHistory'
 import PerforadoraStadistic from './pagAdmin/Perforadora/PerforadoraStatistic'
 
 import Tronadura from './pagAdmin/Tronadura/TronaduraRegistro'
+import TronaduraList from './pagAdmin/Tronadura/TronaduraList'
 
 import {AuthProvider} from './context/AuthProvider'
 import {CondicionProvider} from './context/CondicionesProvider'
@@ -54,10 +56,11 @@ function App() {
                       <Route path="Perforacion/Condicion" element={<CondicionList/>}/>
                       <Route path="Perforacion/Historial" element={<PerforadoraHistory/>}/>
                       <Route path="Perforacion/Estadisticas" element={<PerforadoraStadistic/>}/>
+                      {/* TRONADURA */}
                       <Route path="Perforacion/Tronadura" element={<Tronadura/>}/>
+                      <Route path="Perforacion/Programa" element={<TronaduraList/>}/>
 
                      
-
 
                       {/* TRASLADO */}
                       <Route path="Perforacion" element={<MenuPerforacion/>}/>

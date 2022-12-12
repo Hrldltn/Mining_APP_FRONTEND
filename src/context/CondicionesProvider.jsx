@@ -85,7 +85,14 @@ export const CondicionProvider = ({children})=>{
         }
     }
 
-    
+    const guardarImage = async(form_data)=>{
+
+        const {file}= await clienteAxios.post('/condicion/file', form_data, {
+            image_name: form_data.name,
+            description: form_data.description
+        })
+        console.log(file)
+    }
     const obtenerCondicion = (condicion) =>{
         setCondicion(condicion)
     }
@@ -131,6 +138,7 @@ export const CondicionProvider = ({children})=>{
             eliminarCondicion,
             condicionesHoy,
             obtenerCondicionesDia,
+            guardarImage
         }}
         >
             {children}

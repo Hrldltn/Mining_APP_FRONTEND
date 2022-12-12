@@ -6,8 +6,7 @@ import CerrarBtn from '../../assets/img/cerrar.svg'
 const Modal = ({setModal,animarModal,setAnimarModal}) => {
 
   
-  const { condicion } = useCondicion(1)
-  const {editarCondicion, eliminarCondicion} = useCondicion(1)
+  const { condicion , editarCondicion, eliminarCondicion } = useCondicion(1)
   const [Rojo , setRojo]= useState(false)
   const [Amarillo , setAmarillo]= useState(false)
   const [mostrarMantencion , setMostrarMantencion]= useState(false)
@@ -68,6 +67,7 @@ const Modal = ({setModal,animarModal,setAnimarModal}) => {
   return (
     <>
       <div className="modal flex flex-col h-screen">
+      <div className='overflow-y-auto'>
         <div className="cerrar-modal ">
           <img src={CerrarBtn} alt="cerrar modal" className="w-5 h-5 md:w-7 md:h-7 hover:cursor-pointer xl:-translate-x-20" onClick={ocultarModal}></img>
         </div>
@@ -96,10 +96,15 @@ const Modal = ({setModal,animarModal,setAnimarModal}) => {
                     <span className="font-normal normal-case text-white pl-2">{user}</span>
                 </p>
                 <p className={`${mostrarMantencion ? 'block':'hidden'} font-bold text-gray-400 mb-5 uppercase`}>En Mantención por:
-                    <span className="font-normal normal-case text-white pl-2">{listMantencion}</span>
+                    {listMantencion.map((dato1,indice1) =>  {
+                      return <span key={indice1} className="font-normal normal-case text-white">{dato1}</span>
+                    })}
+                    
                 </p>
                 <p className={`${mostrarMalEstado ? 'block':'hidden'} font-bold text-gray-400 mb-5 uppercase`}>En Mal Estado por:
-                    <span className="font-normal normal-case text-white pl-2">{listMalEstado}</span>
+                    {listMalEstado.map((dato2,indice2) =>  {
+                      return <span key={indice2} className="font-normal normal-case text-white">{dato2}</span>
+                    })}
                 </p>
                 <div className="flex flex-row">
                   <Link to="/admin/Perforacion/Formulario"><input type="button" value="Editar" className="bg-gradient-to-r from-gray-600 to-gray-700  shadow-sm shadow-gray-600/50  rounded-xl w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300 mr-5" onClick={() => editarCondicion(condicion)}></input></Link>
@@ -110,6 +115,8 @@ const Modal = ({setModal,animarModal,setAnimarModal}) => {
                 {imagen}
             </div>
         </div>
+      </div>
+        
       </div>
     </>
   )

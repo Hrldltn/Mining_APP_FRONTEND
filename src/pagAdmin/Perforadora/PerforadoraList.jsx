@@ -10,18 +10,11 @@ const CondicionList = () => {
           <h2 className="font-black text-3xl text-center mt-10">Información diaria de Perforadoras</h2>
           <p className="text-xl mt-5 mb-10 text-center">Condiciones e información de las{''} <span className="text-amber-600 font-bold">Perforadoras</span> </p>
           <div className="overflow-y-scroll h-96">
-              {condicionesHoy.map(condicion =>(
              
-                  <>
-                    <Condicion
-                    key={condicion._id}
-                    condicion={condicion}
-                    ></Condicion>
-
-          
-                  </>
-           
-              ))}
+              {condicionesHoy.map((dato, indice) =>
+                {
+                  return <Condicion key={indice} condicion={dato}/>
+                })}
           </div>
           
         

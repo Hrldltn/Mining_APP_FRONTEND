@@ -6,6 +6,9 @@ const TronaduraContext=createContext()
 
 export const TronaduraProvider = ({children}) => {
 
+    const [tronaduras , setTronaduras]=useState([])
+    const [tronadura , setTronadura]=useState({})
+    
     const guardarTronadura = async(tronaduraDoc) => {
         const token = localStorage.getItem('Mining_token')
         const config ={
@@ -22,16 +25,57 @@ export const TronaduraProvider = ({children}) => {
         } catch (error) {
             console.log(error)
         }      
-        // if(condicion.id){
-        //     try {
-        //         const {data}= await clienteAxios.put(`/Tronadura/${condicion.id}`,condicion,config)
-        //         const condicionActualizado=condicion.map(condicionState => condicionState._id === data._id ? data : condicionState)
-        //         setCondicion(condicionActualizado)
-        //     } catch (error) {
-        //         console.log(error)
-        //     }
-        // }else{
-        //}
+    }
+
+    useEffect(()=>{
+        const obtenerTronadura = async () => {
+            try {
+                const token = localStorage.getItem('Mining_token')
+                if(!token) return
+                
+                const config = {
+                    headers:{
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+                const{data} = await clienteAxios('/Tronadura',config)
+                setTronaduras(data)
+           
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        obtenerTronadura()
+    },[tronadura])
+
+    const obtenerTronadura = (tronadura) =>{
+        setTronadura(tronadura)
+    }
+    const editarTronadura = (tronadura) =>{
+        setTronaduras(tronadura)
+    }
+
+
+    const eliminarTronadura= async id =>{
+        const confirmar = confirm('¿Seguro que deseas eliminar?')
+
+        if(confirmar){
+            try{
+                const token=localStorage.getItem('Mining_token')
+                const config={
+                    headers:{
+                        "Content-Type":"application/json",
+                        Authorization:`Bearer ${token}`
+                    }
+                 }
+                const {data} = await clienteAxios.delete(`/Tronadura/${id}`,config)
+                const tronaduraActualizado = tronaduras.filter(condicionState => condicionState._id!==id)
+                setTronaduras(tronaduraActualizado)
+            }catch(error){
+                console.log(error)
+            }
+        }
     }
 
 
@@ -40,6 +84,11 @@ export const TronaduraProvider = ({children}) => {
         value={{
     
             guardarTronadura,
+            tronaduras,
+            obtenerTronadura,
+            tronadura,
+            editarTronadura,
+            eliminarTronadura
     
         }}
         >

@@ -7,8 +7,8 @@ import CircleChart from '../../components/Graph/CircleChart'
 
 
 const Perforadorastatistic = (val) => {
+
   const {condiciones} = useCondicion(1)
-  
   var fecha = condiciones.map((data) =>{
         const Fecha=data.fecha.toString().split('T')[0]
         const parts = Fecha.split("-");
@@ -22,7 +22,20 @@ const Perforadorastatistic = (val) => {
 
   let estado = ""
 
-  let [UpdateInfo, setUpdateInfo] = useState(4)
+  let [onDATA, setonData] = useState(false)
+  let [UpdateInfo, setUpdateInfo] = useState(0)
+
+  if(condiciones.length >= 1)
+  {
+    if(onDATA == false)
+    {
+      console.log("data detected")
+      setonData(true)
+      setUpdateInfo(1)
+    }
+    //console.log(condiciones.length)
+  }
+  
 
   let [BegingData, setBegingData] = useState(1)
   let [manTotal, setmanTotal] = useState(0)
@@ -49,7 +62,7 @@ const Perforadorastatistic = (val) => {
 
   let [estadoPorciento , setEstadoPorciento] = useState({
       
-    labels:NameEstado,
+    labels:['Buen Estado','Mantención','Mal Estado'],
     datasets:[{
       label:"Porcentaje de maquinaria por estado" ,
       data:[totalBuenEstado,totalMantencion,totalMalEstado],
@@ -103,16 +116,12 @@ if(buenEstadoSwitch){
   buenEstado=condiciones.filter((dato) => dato.estado.includes('Buen Estado'))
 }
 
-
-
   useEffect(() => {
-    if(UpdateInfo > 1)
+    if(UpdateInfo > 0 )
     {
       // Poner funciones a recargar despues de renderizar
       ReloadData()
-      let value = UpdateInfo - 1
-      console.log(value)
-      setUpdateInfo(value)
+      setUpdateInfo(0)
       console.log("endReload")
     }
   })
@@ -159,7 +168,7 @@ if(buenEstadoSwitch){
     setTotalMalEstado(totalFallados)
     
     setEstadoPorciento({
-      labels:NameEstado,
+      labels:['Buen Estado','Mantención','Mal Estado'],
       datasets:[{
         label:"Porcentaje de maquinaria por estado" ,
         data:[totalBueno,totalMantencimiento,totalFallados],
@@ -200,13 +209,10 @@ if(buenEstadoSwitch){
   if(BegingData == 1)
   {
     ReloadData()
-    console.log("iniciate")
+    console.log("Iniciate render")
     setBegingData(0)
   }
   
- 
-
-   
     function generatePDF(){
         let pdf = new jsPDF()
 

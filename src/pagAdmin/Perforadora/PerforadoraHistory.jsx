@@ -75,7 +75,7 @@ const PerforadoraHistory = () => {
                     <HiOutlineSearch size="30" className="mt-1 -translate-x-20 md:-translate-x-20 xl:-translate-x-42  2xl:-translate-x-[6rem] ml-6 text-gray-400"></HiOutlineSearch>
                 </div>
                 <div className={`${modal ? 'hidden':'block'} flex xl:container justify-center mt-5 rounded-md drop-shadow-2xl md:-translate-x-2 xl:translate-x-3`}>
-                    <div className="overflow-x-auto relative rounded-xl  drop-shadow-xl w-full h-full hidden md:block">
+                    <div className="overflow-x-auto relative rounded-xl  drop-shadow-xl hidden md:block w-full h-full">
                         <table className="w-full md:text-md xl:text-lg text-sm text-left h-max text-gray-500 dark:text-gray-400">
                             <thead className="text-md text-gray-700 uppercase bg-gray-300 dark:bg-gray-800 dark:text-gray-100">
                                 <tr >
@@ -147,32 +147,15 @@ const PerforadoraHistory = () => {
                                     </td>
                                 </tr>
                             
+                               
                                 ))}
-                                
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+                        
                     </div>
-                    
-                </div>
-                <div className="container mt-5  flex flex-col items-center md:hidden ">
-                        {results.map(condition =>(            
-                            <>
-                                <div   key={condition._id}  className="border-b-2 mx-6 drop-shadow-2xl  shadow-xl border-gray-400 mb-10">
-                                    <div className="p-3 rounded-xl w-46 flex flex-col items-start gap-1 border-black">
-                                        <p className="font-bold mb-1 text-lg">Nombre: <span className="font-normal">{condition.Nombre}</span></p>
-                                        <p className="font-bold mb-1 text-lg">Modelo: <span className="font-normal">{condition.modelo}</span></p>
-                                        <p className="font-bold mb-1 text-lg">Cantidad: <span className="font-normal">{condition.cantidad}</span></p>
-                                        <p className="font-bold mb-1 text-lg">Estado: <span className="font-normal">{condition.estado}</span></p>
-                                        <p className="font-bold mb-1 text-lg">Fecha: <span className="font-normal">{condition.fecha.split('T')[0]}</span> </p>
-                                        <p className="font-bold mb-1 text-lg">Ingresado por: <span className="font-normal">{condition.user}</span></p>
-                                    </div>                                    
-                                </div>
-                            </>
-                        ))}
-                </div>
-
+              
             </>
-            
             ) : 
             (
                 <>
