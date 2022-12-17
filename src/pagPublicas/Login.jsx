@@ -82,7 +82,7 @@ return (
               </div>
            </form>
            <nav className="mt-10 lg:flex lg:justify-around">
-              <Link to="/registrar" className="block text-center my-5 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg">¡Registra tu  Nueva Contraseña!</Link>
+              <Link to="/registrar" className="block text-center my-5 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg">¡Registra tu  Nuevo Usuario!</Link>
               <Link to="/recuperar-password" className="block text-center my-5 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg pb-5">¡Reestablece tu Contraseña!</Link>
            </nav>
            <div className="md:px-20 mb-4 ">

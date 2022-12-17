@@ -15,6 +15,7 @@ const Tronadura = () => {
   const { auth } = useAuth()
   const [perfil , setPerfil]=useState({})
   const[Nombre,setNombre]=useState('')
+  const [Fecha, setFecha] = useState('')
 
   const[tronaduraDoc, settronaduraDoc] = useState('')
   const[id,setId]=useState(null)
@@ -38,28 +39,70 @@ const Tronadura = () => {
   let user = nombre + ' ' + apellido
 
   
-  const {guardarTronadura,tronaduras} = useCondicion(2)
+  const {guardarTronadura,tronadura} = useCondicion(2)
 
 
   useEffect(() => {
     setPerfil(auth)
-
   },[auth])
 
-  // useEffect(()=>{
-  //   if(tronaduras?.Nombre){
-  //     setNombre(tronaduras.Nombre)
-  //     settronaduraDoc(tronaduras.Nombre)
-  //     setCantidad(tronaduras.cantidad)
-  //     setEstado(tronaduras.estado)
-  //     setModelo(tronaduras.modelo)
-  //     setId(tronaduras._id)
-  //     setEdicion(true)    
-  //   }
-  // },[tronaduras])
+  let [receptData, setRecepData] = useState(false)
+
+  useEffect(()=>{
+    if(tronadura?.Nombre_doc){
+      console.log("detectado")
+      setNombre(tronadura.Nombre_doc)
+      setFecha(tronadura.Fecha_programada.slice(0,-8))
+      setId(tronadura._id)
+
+
+      setDataCampos(tronadura.tabla_columna)
+      setMapVer(tronadura.tabla_contenido)
+
+      setRecepData(true)
 
 
 
+      setEdicion(true)
+    }},[tronadura])
+
+  useEffect(()=>
+  {
+    if(receptData == true)
+    {
+      console.log("ReloadData")
+
+      setRecepData(false)
+      console.log("reload-Table")
+        console.log(tronadura)
+
+        console.log(tronadura.tabla_contenido)
+        let objectarray = tronadura.tabla_columna
+        let vertialArray = [...MapVer]
+        for( var i = 0; i < objectarray.length; i++)
+        {
+        var columTable = document.getElementsByName("ColumnaTabla-" + i)
+            columTable[0].value = tronadura.tabla_columna[i]
+
+        }
+
+        console.log(vertialArray.length)
+        for( var x = 0; x < vertialArray.length; x++)
+        {
+            console.log(objectarray)
+            for( var i = 0; i < objectarray.length; i++)
+            {
+                var contenTable = document.getElementsByName("ContenidoTabla-" + x + '-' + i)
+                contenTable[0].value = tronadura.tabla_contenido[x][i]
+            } 
+        }
+
+    }
+  })
+
+
+
+// temporaldate.getFullYear().toString() + 
 
   const HorizontalCells = (result) =>
   {
@@ -312,8 +355,15 @@ const Tronadura = () => {
         arrayDoc = []   
     }
 
-    TemporaltronaduraDoc = {'Nombre_doc':Nombre,'Fecha_programada': HourVal[0].value, 'tabla_columna': objectarray, 'tabla_contenido': tonaduraTable, 'user': user}
-
+    if(id== null)
+    {
+      TemporaltronaduraDoc = {'Nombre_doc':Nombre,'Fecha_programada': HourVal[0].value, 'tabla_columna': objectarray, 'tabla_contenido': tonaduraTable, 'user': user}
+    }
+    else
+    {
+      TemporaltronaduraDoc = {id,'Nombre_doc':Nombre,'Fecha_programada': HourVal[0].value, 'tabla_columna': objectarray, 'tabla_contenido': tonaduraTable, 'user': user}
+    }
+    
     settronaduraDoc(TemporaltronaduraDoc)
   
     setAlerta({})
@@ -325,7 +375,7 @@ const Tronadura = () => {
       setAlerta({msg:'Tronadura Editada Correctamente', error:false})
       setTimeout(() => {
         setAlerta({})
-        return window.location.href = "Formulario/Condicion";
+        return window.location.href = "Programa";
       },1300)
     }
 
@@ -383,7 +433,7 @@ const Tronadura = () => {
               Fecha a programar:
             </label>
             <br/>
-            <input type="datetime-local" name="meeting-time" min="2018-06-07T00:00" max="2118-06-14T00:00" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></input> 
+            <input type="datetime-local" name="meeting-time" min="2018-06-07T00:00" max="2118-06-14T00:00" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required value={Fecha} onChange={e => setFecha(e.target.value)}></input> 
             <br/><br/>
               <div className='overflow-x-scroll'>
                   <table className="shadow-xl w-full text-gray-500 dark:text-gray-400 overflow-y-scroll">
@@ -405,7 +455,7 @@ const Tronadura = () => {
                           </tr>
                         })}
                     </tbody>
-                </table>
+                  </table>
               </div> 
             </div>
             <div className="px-4 md:px-20 mt-5 py-5 flex flex-col items-center">

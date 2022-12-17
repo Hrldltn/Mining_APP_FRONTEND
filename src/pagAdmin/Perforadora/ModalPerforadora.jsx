@@ -12,7 +12,7 @@ const Modal = ({setModal,animarModal,setAnimarModal}) => {
   const [mostrarMantencion , setMostrarMantencion]= useState(false)
   const [mostrarMalEstado , setMostrarMalEstado]= useState(false)
   
-  const {Nombre, modelo, cantidad, estado, fecha, _id , user,observacion,imagen,detallesMantencion,detallesMalEstado} = condicion
+  const {Nombre, modelo, cantidad, estado, fecha, _id , user,observacion,imagen,detallesMantencion,detallesMalEstado,Dataurl} = condicion
 
   const Fecha=fecha.toString().split('T')[0]
   const parts = Fecha.split("-");

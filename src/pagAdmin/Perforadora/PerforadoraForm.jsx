@@ -15,13 +15,14 @@ const CondicionPer = () => {
   const[detallesMantencion,setDetallesMantencion]=useState([])
   const[detallesMalEstado,setdetallesMalEstado]=useState([])
   const[imagen,setImagen]=useState('')
+  const[Dataurl, setDataurl] = useState("")
   const[file,setFile]=useState('')
   const[id,setId]=useState(null)
   const[mostrar,setMostrar]=useState(false)
   const[Mantencion,setMantencion]=useState(false)
 
 
-  
+  let Man_Mal=true
   const {nombre , apellido , correo , telefono, area } = perfil
   const[edicion,setEdicion]=useState(false)
  
@@ -67,6 +68,7 @@ const CondicionPer = () => {
   },[condiciones])
 
   const handleEstado = (e) =>{
+  
     /* Para obtener el numero iterado */
     var combo = e.target.selectedIndex
     if(combo === 0 || combo === 1){
@@ -107,6 +109,7 @@ const CondicionPer = () => {
     const reader = new FileReader(file)
     reader.onloadend=()=>{
       setFile(reader.result)
+      setDataurl((reader.result).toString())
     }
     reader.readAsDataURL(file)
 
@@ -123,15 +126,17 @@ const CondicionPer = () => {
     detallesMalEstado.push(e.target.value)
     setdetallesMalEstado(detallesMalEstado)
   }
-  
+
+
+ 
   const handleSubmit= async e =>{
     e.preventDefault()
-
+ 
     
-    // if(!imagen){
-    //   setAlerta({msg:'Debes ingresar una imagen', error:true})
-    //   return;
-    // }
+    if(!imagen){
+      setAlerta({msg:'Debes ingresar una imagen', error:true})
+      return;
+    }
     
     const Perforadora =[cantidad,Nombre,estado,modelo]
     if(Perforadora.includes('') || 
@@ -141,10 +146,19 @@ const CondicionPer = () => {
       return;
     }
     
-    if(!handleMantencion || !handleMalEstado){
-      if(detallesMantencion[0] == undefined || detallesMalEstado[0] == undefined)
-      setAlerta({msg:'Debe Agregar Detalles del estado', error:true})
-      return;
+    if(Mantencion || mostrar){
+      if(Mantencion && detallesMantencion.length == 0){
+        Man_Mal = false
+      }
+
+      if(mostrar && detallesMalEstado.length == 0){
+        Man_Mal = false
+      }
+
+      if(Man_Mal == false){
+        setAlerta({msg:'Debes Ingresar detalles del estado',error:true})
+        return
+      }
     }
  
 
@@ -155,9 +169,8 @@ const CondicionPer = () => {
         return;
       }
     }
-    
     guardarCondicion({cantidad,Nombre,estado,modelo,id,user,observacion,detallesMantencion,detallesMalEstado,imagen})
-    
+
     setCantidad('')
     setObservacion('')
     setEstado('')

@@ -225,6 +225,7 @@ if(buenEstadoSwitch){
         const canvasLine = document.getElementById('barLine')
         const imageLine= canvasLine.toDataURL('image/png',1.0)
 
+
         pdf.addImage(imageBar,15,15,180,150,"alias1")
         pdf.addPage()
         pdf.addImage(imageCircle,15,15,180,150,"alias2")

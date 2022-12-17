@@ -77,7 +77,7 @@ const PerforadoraHistory = () => {
                 <div className={`${modal ? 'hidden':'block'} flex xl:container justify-center mt-5 rounded-md drop-shadow-2xl md:-translate-x-2 xl:translate-x-3`}>
                     <div className="overflow-x-auto relative rounded-xl  drop-shadow-xl hidden md:block w-full h-full">
                         <table className="w-full md:text-md xl:text-lg text-sm text-left h-max text-gray-500 dark:text-gray-400">
-                            <thead className="text-md text-gray-700 uppercase bg-gray-300 dark:bg-gray-800 dark:text-gray-100">
+                            <thead className="text-md  uppercase bg-gray-800 text-gray-100">
                                 <tr >
                                    <th scope="col" className="py-3 px-4 2xl:px-6">
                                         Nombre
@@ -100,7 +100,7 @@ const PerforadoraHistory = () => {
                                     <th scope="col" className="py-3 md:px-6 2xl:pl-20">
                                         observación
                                     </th>
-                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-0">
+                                    <th scope="col" className="py-3 md:px-6 xl:px-11 2xl:px-10 ">
                                         Acciones
                                     </th>
                                 </tr>
@@ -132,19 +132,11 @@ const PerforadoraHistory = () => {
                                     <td className="py-4 pb-10 md:px-6 2xl:pr-20 text-center text-gray-100">
                                         {condicion.observacion ? condicion.observacion : 'no existe observación'}
                                     </td>
-                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100 flex gap-2" onClick={()=> handleDetalles(condicion)}>
+                                    <td className="py-7 md:px-2 2xl:px-0 text-gray-100 flex gap-2" onClick={()=> handleDetalles(condicion)}>
                                         <GiEyeTarget size={26} className="cursor-pointer"/>
                                         <p className="cursor-pointer">Ver Detalles</p>
                                     </td>  
-                                    <td className="py-4 md:px-6 2xl:px-0 text-gray-100 flex gap-2 flex-row " onClick={() => editarCondicion(condicion)}>
-                                        <Link to="/admin/Perforacion/Formulario"><GiPencil size={26} className="cursor-pointer" onClick={() => editarCondicion(condicion)}/></Link>
-                                        <p className="cursor-pointer text-sky-400">Editar</p>
-                                        
-                                    </td>
-                                    <td className="py-4 md:px-6 2xl:pr-20 2xl:-translate-x-7 text-gray-100 flex gap-2" onClick={() => eliminarCondicion(condicion._id)}>
-                                        <GiTrashCan size={26} className="cursor-pointer" />
-                                        <p className="cursor-pointer text-red-500">Eliminar</p>
-                                    </td>
+                                   
                                 </tr>
                             
                                
@@ -154,7 +146,6 @@ const PerforadoraHistory = () => {
                         </div>
                         
                     </div>
-              
             </>
             ) : 
             (
