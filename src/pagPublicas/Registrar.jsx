@@ -83,7 +83,7 @@ const Registrar = () => {
         </div>
         <div className="2xl:px-5 xl:m-11 shadow-2xl bg-white md:px-2 md:py-5 rounded-xl md:mt-5 2xl:-translate-y-6  md:ml-3 xl:ml-10">
           <div >
-            <h1 className="text-amber-500 font-black text-3xl md:text-4xl text-center pt-10 mb-6">¡Registra tu Contraseña!</h1>
+            <h1 className="text-amber-500 font-black text-3xl md:text-4xl text-center pt-10 mb-6">¡Registra tu usuario!</h1>
           </div>
           {msg && <Alerta alerta={alerta}/>}
 
@@ -132,7 +132,6 @@ const Registrar = () => {
             </form>
             <nav className="mt-10 lg:flex lg:justify-around">
               <Link to="/" className="block text-center  text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg">¿Ya tienes cuenta? ¡Inicia Sesión!</Link>
-              <Link to="/recuperar-password" className="block text-center pb-6 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg ">¡Reestablece tu Contraseña!</Link>
             </nav>
         </div>
     
