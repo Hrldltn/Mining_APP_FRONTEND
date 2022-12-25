@@ -18,6 +18,7 @@ import CondicionList from './pagAdmin/Perforadora/PerforadoraList'
 
 import PerforadoraHistory from './pagAdmin/Perforadora/PerforadoraHistory'
 import PerforadoraStadistic from './pagAdmin/Perforadora/PerforadoraStatistic'
+import PerforadoraMantenimiento from './pagAdmin/Perforadora/MantenimientoPerforadora'
 
 import Tronadura from './pagAdmin/Tronadura/TronaduraRegistro'
 import TronaduraList from './pagAdmin/Tronadura/TronaduraList'
@@ -59,6 +60,7 @@ function App() {
                         <Route path="Perforacion/Condicion" element={<CondicionList/>}/>
                         <Route path="Perforacion/Historial" element={<PerforadoraHistory/>}/>
                         <Route path="Perforacion/Estadisticas" element={<PerforadoraStadistic/>}/>
+                        <Route path="Perforacion/Mantencion" element={<PerforadoraMantenimiento/>}/>
 
                         {/* TRONADURA */}
                         <Route path="Perforacion/Tronadura" element={<Tronadura/>}/>

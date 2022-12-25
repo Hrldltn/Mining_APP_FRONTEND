@@ -7,6 +7,29 @@ const MantencionContext=createContext()
 export const MantencionProvider = ({children})=>{
 
     const [mantencion , setMantencion]=useState([])
+    const [mantenciones , setMantenciones]=useState([])
+
+    useEffect(()=>{
+        const obtenerMantencion = async () => {
+            try {
+                const token = localStorage.getItem('Mining_token')
+                if(!token) return
+                
+                const config = {
+                    headers:{
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+                const{data} = await clienteAxios('/Mantencion/${mantencion.id}',config)
+                setMantenciones(data)
+           
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        obtenerMantencion()
+    },[mantencion])
 
     const guardarMatencion = async(mantencion) => {
         const token = localStorage.getItem('Mining_token')
@@ -41,7 +64,8 @@ export const MantencionProvider = ({children})=>{
         <MantencionContext.Provider
         value={{
             guardarMatencion,
-            mantencion
+            mantencion,
+            mantenciones
         }}
         >
             {children}

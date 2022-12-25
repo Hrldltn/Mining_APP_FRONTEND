@@ -11,6 +11,7 @@ const CondicionPer = () => {
   const[estado,setEstado]=useState('')
   const[modelo,setModelo]=useState('')
   const[Nombre,setNombre]=useState('')
+  const[fechaEstimada,setFechaEstimada]=useState('')
   const[fecha,setFecha]=useState('')
   const[observacion,setObservacion]=useState('')
   const[detallesMantencion,setDetallesMantencion]=useState([])
@@ -171,8 +172,8 @@ const CondicionPer = () => {
         return;
       }
     }
-    guardarCondicion({cantidad,Nombre,estado,modelo,id,user,observacion,detallesMantencion,detallesMalEstado,imagen})
-    guardarMatencion({estado,modelo,id,user,observacion,fecha})
+    guardarCondicion({cantidad,Nombre,estado,modelo,id,user,observacion,detallesMantencion,detallesMalEstado,imagen,fecha})
+    guardarMatencion({estado,modelo,id,user,observacion,fechaEstimada})
 
     setCantidad('')
     setObservacion('')
@@ -216,7 +217,13 @@ const CondicionPer = () => {
                 <input type="file" accept=".jpg, .jpeg, .png" className="border w-full p-3 mt-3 md:text-xl text-lg bg-gray-50 rounded-xl" filename="file" onChange={handleFileChange}></input>
                 <img className={`img-fluid ${imagen ? 'block' : 'hidden'}`} src={file} alt="img"></img>
             </div>
-            <div className="px-4 md:px-20">
+            <div className="px-4 md:px-20 mt-10">
+                <label className= "uppercase text-gray-600 block md:text-xl text-lg font-bold">
+                  Fecha de Ingreso:
+                </label>
+                <input type="Date" placeholder="Ingrese la Fecha de Salida" className="md:text-xl text-lg border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={fecha} onChange={e => setFecha(e.target.value)}></input>
+            </div>
+            <div className="px-4 md:px-20 mt-10">
                 <label className="uppercase text-gray-600 block md:text-xl text-lg font-bold">
                   Nombre:
                 </label>
@@ -424,9 +431,9 @@ const CondicionPer = () => {
             </div>
             <div className="px-4 md:px-20 mt-10">
                 <label className= "uppercase text-gray-600 block md:text-xl text-lg font-bold">
-                  Fecha de Entrega:
+                  Fecha Estimada de Entrega:
                 </label>
-                <input type="Date" placeholder="Ingrese la Fecha de Salida" className="md:text-xl text-lg border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={fecha} onChange={e => setFecha(e.target.value)}></input>
+                <input type="Date" placeholder="Ingrese la Fecha de Salida" className="md:text-xl text-lg border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={fechaEstimada} onChange={e => setFechaEstimada(e.target.value)}></input>
             </div>
             <div className="px-4 md:px-20 mt-5 py-5 flex flex-col items-center">
               <input type="submit" value={id ? 'Guardar Cambios': 'Registrar Condiciones'}  className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50  rounded-xl w-full p-2 mt-3 font-bold md:text-2xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-100 duration-300"></input>

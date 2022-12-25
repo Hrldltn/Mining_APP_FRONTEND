@@ -48,9 +48,10 @@ const AdminPerforacion = () => {
             <div className="bg-white overflow-hidden xl:w-[18rem] 2xl:w-[23rem] transition-all duration-500 rounded-b-lg max-h-0 peer-checked:max-h-96">
               <div className="py-3 list-none">
                 <Link to="Formulario"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Registrar Perforadora</li></Link>
-                <Link to="Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condición de Perforadora</li></Link>
+                <Link to="Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condiciones diarias de Perforadora</li></Link>
                 <Link to="Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
                 <Link to="Estadisticas"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineTrendingUp className="float-right mx-1 mt-1"></HiOutlineTrendingUp>Estadisticas</li></Link>
+                <Link to="Mantencion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineTrendingUp className="float-right mx-1 mt-1"></HiOutlineTrendingUp>Perforadoras Entregadas/Espera</li></Link>
               </div>
             </div>
           </div>
@@ -100,7 +101,7 @@ const AdminPerforacion = () => {
             <div className="bg-white overflow-hidden xl:w-[18rem] 2xl:w-[23rem] transition-all duration-500 rounded-b-lg max-h-0 peer-checked:max-h-96">
               <div className="py-3 list-none">
                 <Link to="Formulario"><li className=" py-4 hover:underline underline-offset-4 hover:bg-gray-200 px-3 rounded-md text-sm xl:text-lg pb-2"><HiPencil className="float-right mx-1"></HiPencil>Registrar Perforadora</li></Link>
-                <Link to="Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condicion de Perforadora</li></Link>
+                <Link to="Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condiciones diarias de Perforadora</li></Link>
                 <Link to="Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
                 <Link to="Estadisticas"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineTrendingUp className="float-right mx-1 mt-1"></HiOutlineTrendingUp>Estadisticas</li></Link>
               </div>
