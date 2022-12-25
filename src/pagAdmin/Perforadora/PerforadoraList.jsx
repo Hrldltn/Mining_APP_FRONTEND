@@ -22,7 +22,7 @@ const CondicionList = () => {
       ) : 
       (
         <>
-          <h2 className="font-black text-2xl text-center">No hay información por hoy</h2>
+          <h2 className="font-black text-2xl text-center">No hay información por Hoy</h2>
           <p className=" text-xl text-center">Vea Historial para más información</p>
         </> 
       )}
