@@ -53,7 +53,7 @@ const OlvidePassword = () => {
       </div>
       <div className="2xl:px-5 xl:m-10 shadow-2xl bg-white md:px-2 md:py-5 rounded-xl md:mt-6 xl:mt-16 md:ml-5 xl:mr-40">
           <div >
-            <h1 className="text-amber-500 font-black text-3xl md:text-4xl text-center pt-10 mb-6">¡Reestablece tu Contraseña!</h1>
+            <h1 className="text-amber-500 font-black text-3xl md:text-4xl text-center pt-10 mb-6">¡Restablece tu Contraseña!</h1>
           </div>
 
           { msg && <Alerta alerta={alerta} />}

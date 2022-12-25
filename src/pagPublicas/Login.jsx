@@ -83,7 +83,7 @@ return (
            </form>
            <nav className="mt-10 lg:flex lg:justify-around">
               <Link to="/registrar" className="block text-center my-5 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg">¡Registra tu  Nuevo Usuario!</Link>
-              <Link to="/recuperar-password" className="block text-center my-5 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg pb-5">¡Reestablece tu Contraseña!</Link>
+              <Link to="/recuperar-password" className="block text-center my-5 text-gray-600 hover:underline hover:cursor-pointer text-sm md:text-lg pb-5">¡Restablece tu Contraseña!</Link>
            </nav>
            <div className="md:px-20 mb-4 ">
             <p> No olvides que para iniciar sesión debes ingresar con tu correo de Área o el indicado por tu jefatura si es un nuevo usuario debe registrar su contraseña de lo contrario recupere la contraseña olvidada.</p>

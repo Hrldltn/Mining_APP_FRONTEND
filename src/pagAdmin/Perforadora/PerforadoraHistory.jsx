@@ -41,25 +41,6 @@ const PerforadoraHistory = () => {
         },300)
         
         }
-
-   
-
-    // useEffect(() => {
-    //     condiciones.forEach(element =>{
-    //         const Fecha=element.fecha.toString().split('T')[0]
-    //         fecha.push(Fecha)
-    //         setFecha(fecha)
-    //         // const parts = Fecha.split("-");
-    //         // const fechaObjeto = new Date(parts[0], parts[1]-1, parts[2]); // los meses para JS comienzan en 0
-            
-    //         // //     // Para imprimirlo o obtenerlo en el formato 
-    //         // let options = {year: 'numeric', month: 'long', day: 'numeric' };
-    //         // const fechaFormateada=fechaObjeto.toLocaleDateString('es-ES', options);
-    //         // setFecha(fechaFormateada)
-           
-    //     })
-      
-    // }, []);
    
     return (
       

@@ -11,6 +11,7 @@ const CondicionPer = () => {
   const[estado,setEstado]=useState('')
   const[modelo,setModelo]=useState('')
   const[Nombre,setNombre]=useState('')
+  const[fecha,setFecha]=useState('')
   const[observacion,setObservacion]=useState('')
   const[detallesMantencion,setDetallesMantencion]=useState([])
   const[detallesMalEstado,setdetallesMalEstado]=useState([])
@@ -32,6 +33,7 @@ const CondicionPer = () => {
 
 
   const {guardarCondicion,condiciones} = useCondicion(1)
+  const {guardarMatencion} = useCondicion(3)
 
 
   useEffect(() => {
@@ -170,6 +172,7 @@ const CondicionPer = () => {
       }
     }
     guardarCondicion({cantidad,Nombre,estado,modelo,id,user,observacion,detallesMantencion,detallesMalEstado,imagen})
+    guardarMatencion({estado,modelo,id,user,observacion,fecha})
 
     setCantidad('')
     setObservacion('')
@@ -419,7 +422,12 @@ const CondicionPer = () => {
                 </label>
                 <textarea  placeholder="Ingrese el Motivo del estado de la maquinaria" className=" border w-full  mt-3 md:text-xl p-5 text-lg h-40 bg-gray-50 h-50 rounded-xl" value={observacion} onChange={e => setObservacion(e.target.value)}></textarea>
             </div>
-        
+            <div className="px-4 md:px-20 mt-10">
+                <label className= "uppercase text-gray-600 block md:text-xl text-lg font-bold">
+                  Fecha de Entrega:
+                </label>
+                <input type="Date" placeholder="Ingrese la Fecha de Salida" className="md:text-xl text-lg border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={fecha} onChange={e => setFecha(e.target.value)}></input>
+            </div>
             <div className="px-4 md:px-20 mt-5 py-5 flex flex-col items-center">
               <input type="submit" value={id ? 'Guardar Cambios': 'Registrar Condiciones'}  className="bg-gradient-to-r from-gray-600 to-gray-700 shadow-lg shadow-gray-600/50  rounded-xl w-full p-2 mt-3 font-bold md:text-2xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-100 duration-300"></input>
             </div>
