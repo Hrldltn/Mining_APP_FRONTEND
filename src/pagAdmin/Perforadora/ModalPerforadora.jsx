@@ -12,7 +12,7 @@ const Modal = ({setModal,animarModal,setAnimarModal}) => {
   const [mostrarMantencion , setMostrarMantencion]= useState(false)
   const [mostrarMalEstado , setMostrarMalEstado]= useState(false)
   
-  const {Nombre, modelo, cantidad, estado, fecha, _id , user,observacion,imagen,detallesMantencion,detallesMalEstado,Dataurl} = condicion
+  const {Nombre, modelo, cantidad, estado, fecha, _id , user,observacion,imagen,detallesMantencion,detallesMalEstado,fechaEstimada} = condicion
 
   const Fecha=fecha.toString().split('T')[0]
   const parts = Fecha.split("-");
@@ -21,6 +21,14 @@ const Modal = ({setModal,animarModal,setAnimarModal}) => {
   // Para imprimirlo o obtenerlo en el formato 
   let options = {year: 'numeric', month: 'long', day: 'numeric' };
   const fechaFormateada=fechaObjeto.toLocaleDateString('es-ES', options);
+
+  const date=fechaEstimada.toString().split('T')[0]
+  const partes = date.split("-");
+  const fechaObjetoS = new Date(partes[0], partes[1]-1, partes[2]); // los meses para JS comienzan en 0
+  
+  // Para imprimirlo o obtenerlo en el formato 
+  let option = {year: 'numeric', month: 'long', day: 'numeric' };
+  const fechasEstimada=fechaObjetoS.toLocaleDateString('es-ES', option);
   
     useEffect(()=>{
       const verCondicion = () =>{
@@ -95,16 +103,19 @@ const Modal = ({setModal,animarModal,setAnimarModal}) => {
                 <p className="font-bold text-gray-400 mb-5 uppercase">Ingresado por:
                     <span className="font-normal normal-case text-white pl-2">{user}</span>
                 </p>
-                <p className={`${mostrarMantencion ? 'block':'hidden'} font-bold text-gray-400 mb-5 uppercase`}>En Mantención por:
+                <p className={`${mostrarMantencion ? 'block':'hidden'} font-bold text-gray-400 mb-5 uppercase`}>En mantención por:
                     {listMantencion.map((dato1,indice1) =>  {
                       return <span key={indice1} className="font-normal normal-case text-white">{dato1}</span>
                     })}
                     
                 </p>
-                <p className={`${mostrarMalEstado ? 'block':'hidden'} font-bold text-gray-400 mb-5 uppercase`}>En Mal Estado por:
+                <p className={`${mostrarMalEstado ? 'block':'hidden'} font-bold text-gray-400 mb-5 uppercase`}>En mal estado por:
                     {listMalEstado.map((dato2,indice2) =>  {
                       return <span key={indice2} className="font-normal normal-case text-white">{dato2}</span>
                     })}
+                </p>
+                <p className="font-bold text-gray-400 mb-5 uppercase">Fecha estimada de entrega:
+                    <span className="font-normal normal-case text-white pl-2">{fechasEstimada}</span>
                 </p>
                 <div className="flex flex-row">
                   <Link to="/admin/Perforacion/Formulario"><input type="button" value="Editar" className="bg-gradient-to-r from-gray-600 to-gray-700  shadow-sm shadow-gray-600/50  rounded-xl w-40 p-2  font-bold md:text-xl text-lg text-white hover:cursor-pointer  hover:shadow-gray-200 hover:text-gray-300 duration-300 mr-5" onClick={() => editarCondicion(condicion)}></input></Link>

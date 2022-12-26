@@ -50,7 +50,6 @@ const Tronadura = () => {
 
   useEffect(()=>{
     if(tronadura?.Nombre_doc){
-      console.log("detectado")
       setNombre(tronadura.Nombre_doc)
       setFecha(tronadura.Fecha_programada.slice(0,-8))
       setId(tronadura._id)
@@ -70,13 +69,8 @@ const Tronadura = () => {
   {
     if(receptData == true)
     {
-      console.log("ReloadData")
-
       setRecepData(false)
-      console.log("reload-Table")
-        console.log(tronadura)
 
-        console.log(tronadura.tabla_contenido)
         let objectarray = tronadura.tabla_columna
         let vertialArray = [...MapVer]
         for( var i = 0; i < objectarray.length; i++)
@@ -86,10 +80,8 @@ const Tronadura = () => {
 
         }
 
-        console.log(vertialArray.length)
         for( var x = 0; x < vertialArray.length; x++)
         {
-            console.log(objectarray)
             for( var i = 0; i < objectarray.length; i++)
             {
                 var contenTable = document.getElementsByName("ContenidoTabla-" + x + '-' + i)
@@ -335,7 +327,7 @@ const Tronadura = () => {
     let objectarray = [...DataCampos]
     let vertialArray = [...MapVer]
     let HourVal = document.getElementsByName("meeting-time")
-    console.log("Fecha: " + HourVal[0].value)
+    
     for( var i = 0; i < objectarray.length; i++)
     {
       var columTable = document.getElementsByName("ColumnaTabla-" + i)

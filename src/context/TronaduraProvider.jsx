@@ -6,26 +6,8 @@ const TronaduraContext=createContext()
 
 export const TronaduraProvider = ({children}) => {
 
-    const [tronaduras , setTronaduras]=useState([])
+    const [tronaduras , setTronaduras] = useState([])
     const [tronadura , setTronadura]=useState({})
-    
-    const guardarTronadura = async(tronaduraDoc) => {
-        const token = localStorage.getItem('Mining_token')
-        const config ={
-            headers:{
-                "Content-Type":"application/json",
-                Authorization:`Bearer ${token}`
-            }
-        }
-        try {
-            const {data} = await clienteAxios.post('/Tronadura',tronaduraDoc,config)
-            console.log(data)
-            // const { createdAt, updatedAt, __v, ...tronaduraGuardada} = data
-            // setCondicion([tronaduraGuardada,...tronaduraDoc])  
-        } catch (error) {
-            console.log(error)
-        }      
-    }
 
     useEffect(()=>{
         const obtenerTronadura = async () => {
@@ -48,6 +30,42 @@ export const TronaduraProvider = ({children}) => {
         }
         obtenerTronadura()
     },[tronadura])
+
+    const guardarTronadura = async(tronaduraDoc) => {
+        const token = localStorage.getItem('Mining_token')
+        const config ={
+            headers:{
+                "Content-Type":"application/json",
+                Authorization:`Bearer ${token}`
+            }
+        }
+
+        if(tronaduraDoc.id)
+        {
+            try {
+                console.log(tronaduraDoc)
+                const {data}= await clienteAxios.put(`/Tronadura/${tronaduraDoc.id}`,tronaduraDoc,config)
+                const tronaduraActualizado=tronaduraDoc.map(tronaduraState => tronaduraState._id === data._id ? data : tronaduraState)
+                setTronadura(tronaduraActualizado)
+            }
+            catch (error) {
+                console.log(error)
+            }      
+
+        }
+        else
+        {
+            try {
+                const {data} = await clienteAxios.post('/Tronadura',tronaduraDoc,config)
+                console.log(data)
+                // const { createdAt, updatedAt, __v, ...tronaduraGuardada} = data
+                // setCondicion([tronaduraGuardada,...tronaduraDoc]) 
+            }
+            catch (error) {
+                console.log(error)
+            }  
+        }
+    }
 
     const obtenerTronadura = (tronadura) =>{
         setTronadura(tronadura)
@@ -82,11 +100,12 @@ export const TronaduraProvider = ({children}) => {
     return (
         <TronaduraContext.Provider
         value={{
-    
-            guardarTronadura,
             tronaduras,
-            obtenerTronadura,
             tronadura,
+            guardarTronadura,
+            
+            obtenerTronadura,
+            
             editarTronadura,
             eliminarTronadura
     

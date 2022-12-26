@@ -1,8 +1,10 @@
 import {useEffect} from 'react'
 import useCondicion from '../../hooks/useCondicion'
 import Condicion from '../Perforadora/CondicionPerforadora'
+
 const CondicionList = () => {
   const { condicionesHoy } = useCondicion(1)
+
   return (
     <>  
       {condicionesHoy.length ? (
@@ -22,7 +24,7 @@ const CondicionList = () => {
       ) : 
       (
         <>
-          <h2 className="font-black text-2xl text-center">No hay información por Hoy</h2>
+          <h2 className="font-black text-2xl text-center">No hay información por hoy</h2>
           <p className=" text-xl text-center">Vea Historial para más información</p>
         </> 
       )}

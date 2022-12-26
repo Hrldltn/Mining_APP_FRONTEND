@@ -51,7 +51,6 @@ const AdminPerforacion = () => {
                 <Link to="Condicion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm  xl:text-lg pb-2"><HiOutlineClipboardList className="float-right mx-1 mt-1"></HiOutlineClipboardList>Condiciones diarias de Perforadora</li></Link>
                 <Link to="Historial"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineBookOpen className="float-right mx-1 mt-1"></HiOutlineBookOpen>Historial de Condiciones</li></Link>
                 <Link to="Estadisticas"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineTrendingUp className="float-right mx-1 mt-1"></HiOutlineTrendingUp>Estadisticas</li></Link>
-                <Link to="Mantencion"><li className="py-4 hover:underline underline-offset-4 px-3  hover:bg-gray-200 rounded-md text-sm pb-2  xl:text-lg "><HiOutlineTrendingUp className="float-right mx-1 mt-1"></HiOutlineTrendingUp>Perforadoras Entregadas/Espera</li></Link>
               </div>
             </div>
           </div>
