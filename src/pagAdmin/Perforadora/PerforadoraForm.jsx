@@ -180,6 +180,7 @@ const CondicionPer = () => {
     setModelo('')
     setNombre('')
     setImagen('')
+    setFechaEstimada('')
     setdetallesMalEstado([])
     setDetallesMantencion([])
     
